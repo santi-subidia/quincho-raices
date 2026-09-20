@@ -1,0 +1,64 @@
+---
+interface Props {
+  count?: number;
+  className?: string;
+  theme?: 'emerald' | 'amber';
+}
+
+const { count = 16, className = '', theme = 'emerald' } = Astro.props;
+
+// Generate pseudo-random deterministic particles
+const particles = Array.from({ length: count }).map((_, i) => {
+  const left = `${((i * 19 + 7) % 94) + 3}%`;
+  const top = `${((i * 23 + 11) % 90) + 5}%`;
+  const size = ((i % 3) + 2) * 1.5; // 3px to 6px
+  const duration = 7 + (i % 6) * 1.8; // 7s to 16s
+  const delay = (i % 7) * 1.1; // 0s to 6.6s
+  const opacity = 0.2 + (i % 4) * 0.12; // 0.2 to 0.56
+  return { left, top, size, duration, delay, opacity, id: i };
+});
+---
+
+<div class={`absolute inset-0 overflow-hidden pointer-events-none z-10 ${className}`} aria-hidden="true">
+  {particles.map((p) => (
+    <span
+      class={`absolute rounded-full filter blur-[0.5px] ${
+        theme === 'emerald'
+          ? 'bg-emerald-300 shadow-[0_0_8px_rgba(52,211,153,0.8)]'
+          : 'bg-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.8)]'
+      }`}
+      style={{
+        left: p.left,
+        top: p.top,
+        width: `${p.size}px`,
+        height: `${p.size}px`,
+        opacity: p.opacity,
+        animation: `particle-drift ${p.duration}s ease-in-out ${p.delay}s infinite alternate`,
+      }}
+    />
+  ))}
+</div>
+
+<style>
+  @keyframes particle-drift {
+    0% {
+      transform: translate3d(0, 0, 0) scale(0.85);
+      opacity: 0.15;
+    }
+    50% {
+      transform: translate3d(14px, -24px, 0) scale(1.15);
+      opacity: 0.7;
+    }
+    100% {
+      transform: translate3d(-12px, -46px, 0) scale(0.9);
+      opacity: 0.2;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    span {
+      animation: none !important;
+      opacity: 0.25 !important;
+    }
+  }
+</style>

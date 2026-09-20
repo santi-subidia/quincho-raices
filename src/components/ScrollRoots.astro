@@ -1,0 +1,259 @@
+---
+/**
+ * ScrollRoots.astro
+ * Sistema de raíces orgánicas reactivas al scroll para "Quincho Raíces".
+ * - Riel botánico lateral fijo con tallo SVG dinámico.
+ * - Sincronización continua de crecimiento en scroll (stroke-dashoffset).
+ * - Nodos de brote ("Sprouts") que florecen e iluminan conforme se recorre la web.
+ * - Navegación interactiva accesible con tooltips botánicos.
+ */
+
+const SECTIONS = [
+  { id: 'hero', label: 'Inicio', target: '#' },
+  { id: 'amenities', label: 'Instalaciones', target: '#amenities' },
+  { id: 'galeria', label: 'Galería', target: '#galeria' },
+  { id: 'eventos', label: 'Celebraciones', target: '#eventos' },
+  { id: 'cotizador', label: 'Cotizador', target: '#cotizador' },
+  { id: 'ubicacion', label: 'Ubicación', target: '#ubicacion' },
+  { id: 'faq', label: 'Preguntas', target: '#faq' },
+];
+---
+
+<!-- Botanical Scroll Rail (Fixed on Left Edge - Desktop & Tablet) -->
+<aside
+  id="scroll-roots-container"
+  class="fixed left-2 sm:left-4 top-0 bottom-0 z-30 pointer-events-none hidden md:flex flex-col items-center justify-center transition-opacity duration-500 opacity-0"
+  aria-label="Navegación de raíces por la página"
+>
+  <div class="relative h-[65vh] max-h-[560px] min-h-[380px] w-12 sm:w-16 flex items-center justify-center">
+    
+    <!-- Organic SVG Root Spine -->
+    <svg
+      class="absolute inset-0 w-full h-full overflow-visible"
+      viewBox="0 0 60 500"
+      fill="none"
+      preserveAspectRatio="none"
+    >
+      <!-- Background Guide Root (faint organic path) -->
+      <path
+        d="M 30 10 
+           C 22 70, 38 120, 28 170 
+           C 18 220, 42 270, 32 320 
+           C 22 370, 38 420, 30 490"
+        stroke="rgba(52, 120, 90, 0.18)"
+        stroke-width="3"
+        stroke-linecap="round"
+        fill="none"
+      />
+
+      <!-- Active Growing Root (dynamic stroke dash) -->
+      <path
+        id="active-root-path"
+        d="M 30 10 
+           C 22 70, 38 120, 28 170 
+           C 18 220, 42 270, 32 320 
+           C 22 370, 38 420, 30 490"
+        stroke="url(#root-gradient)"
+        stroke-width="3.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        class="transition-all duration-75 ease-out"
+      />
+
+      <!-- Subtle Root Secondary Tendril -->
+      <path
+        id="active-root-tendril"
+        d="M 28 170 
+           C 14 185, 10 205, 12 225 
+           M 32 320 
+           C 46 335, 50 355, 46 375"
+        stroke="rgba(52, 211, 153, 0.6)"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        fill="none"
+        class="opacity-0 transition-opacity duration-300"
+      />
+
+      <!-- Gradient Definition for Living Root -->
+      <defs>
+        <linearGradient id="root-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#34d399" />
+          <stop offset="50%" stop-color="#10b981" />
+          <stop offset="100%" stop-color="#059669" />
+        </linearGradient>
+        
+        <filter id="glow-root" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+      </defs>
+
+      <!-- Living Root Tip (Active Sap Orb) -->
+      <circle
+        id="root-tip-orb"
+        r="4.5"
+        cx="30"
+        cy="10"
+        fill="#34d399"
+        filter="url(#glow-root)"
+        class="animate-root-pulse"
+      />
+    </svg>
+
+    <!-- Milestone Sprout Nodes -->
+    <nav class="absolute inset-y-0 w-full flex flex-col justify-between items-center py-2 pointer-events-auto">
+      {SECTIONS.map((sec, index) => (
+        <a
+          href={sec.target}
+          data-section-id={sec.id}
+          class="root-sprout-node group relative flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+          aria-label={`Ir a sección ${sec.label}`}
+        >
+          <!-- Outer Pulsing Halo when active -->
+          <span class="sprout-halo absolute -inset-1 rounded-full bg-emerald-400/20 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none"></span>
+
+          <!-- Node Center Orb -->
+          <span class="sprout-dot w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-stone-300 border-2 border-stone-100 shadow-sm transition-all duration-300 group-hover:scale-125 group-hover:bg-emerald-500"></span>
+
+          <!-- Sprout Tooltip on Desktop -->
+          <span class="sprout-tooltip absolute left-full ml-3 px-2.5 py-1 rounded-lg bg-stone-900/90 text-white text-[11px] font-semibold tracking-wide whitespace-nowrap backdrop-blur-md opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 pointer-events-none shadow-lg border border-stone-800">
+            {sec.label}
+          </span>
+        </a>
+      ))}
+    </nav>
+
+  </div>
+</aside>
+
+<script>
+  function initScrollRoots() {
+    const container = document.getElementById('scroll-roots-container');
+    const path = document.getElementById('active-root-path') as SVGPathElement | null;
+    const tendril = document.getElementById('active-root-tendril') as SVGPathElement | null;
+    const tipOrb = document.getElementById('root-tip-orb') as SVGCircleElement | null;
+    const sproutNodes = document.querySelectorAll<HTMLAnchorElement>('.root-sprout-node');
+
+    if (!container || !path || !tipOrb) return;
+
+    // Measure total SVG path length
+    const pathLength = path.getTotalLength();
+    path.style.strokeDasharray = `${pathLength} ${pathLength}`;
+    path.style.strokeDashoffset = `${pathLength}`;
+
+    // Target sections to observe
+    const sectionIds = ['hero', 'amenities', 'galeria', 'eventos', 'cotizador', 'ubicacion', 'faq'];
+    const sectionElements = sectionIds.map(id => id === 'hero' ? document.querySelector('header, section') : document.getElementById(id));
+
+    let isUpdating = false;
+
+    function updateRootsOnScroll() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      
+      // Reveal rail once user starts scrolling slightly
+      if (scrollTop > 80) {
+        container?.classList.remove('opacity-0');
+        container?.classList.add('opacity-100');
+      } else {
+        container?.classList.add('opacity-0');
+        container?.classList.remove('opacity-100');
+      }
+
+      if (docHeight <= 0) {
+        isUpdating = false;
+        return;
+      }
+
+      // Progress ratio from 0 to 1
+      const progress = Math.min(Math.max(scrollTop / docHeight, 0), 1);
+
+      // Interpolate stroke dash offset
+      const drawLength = pathLength * progress;
+      path.style.strokeDashoffset = `${pathLength - drawLength}`;
+
+      // Position the glowing tip orb precisely along the path
+      if (drawLength > 0 && drawLength <= pathLength) {
+        const point = path.getPointAtLength(drawLength);
+        tipOrb.setAttribute('cx', point.x.toString());
+        tipOrb.setAttribute('cy', point.y.toString());
+        tipOrb.style.opacity = '1';
+      } else {
+        tipOrb.style.opacity = '0';
+      }
+
+      // Show secondary tendrils when scrolled past 30%
+      if (tendril) {
+        if (progress > 0.3) {
+          tendril.classList.remove('opacity-0');
+          tendril.classList.add('opacity-100');
+        } else {
+          tendril.classList.add('opacity-0');
+          tendril.classList.remove('opacity-100');
+        }
+      }
+
+      // Check current section for active sprout blossom
+      const viewportMid = window.innerHeight * 0.45;
+      let activeIndex = 0;
+
+      sectionElements.forEach((el, index) => {
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= viewportMid) {
+          activeIndex = index;
+        }
+      });
+
+      // Update sprout nodes appearance
+      sproutNodes.forEach((node, index) => {
+        const dot = node.querySelector('.sprout-dot') as HTMLElement;
+        const halo = node.querySelector('.sprout-halo') as HTMLElement;
+
+        if (index <= activeIndex) {
+          // Reached or passed: green blooming sprout
+          dot?.classList.remove('bg-stone-300', 'border-stone-100');
+          dot?.classList.add('bg-emerald-500', 'border-emerald-200', 'shadow-emerald-500/50');
+          
+          if (index === activeIndex) {
+            // Current section active sprout
+            node.classList.add('scale-110');
+            halo?.classList.add('opacity-100', 'animate-ping');
+          } else {
+            node.classList.remove('scale-110');
+            halo?.classList.remove('opacity-100', 'animate-ping');
+          }
+        } else {
+          // Unreached: subtle inactive bud
+          dot?.classList.remove('bg-emerald-500', 'border-emerald-200', 'shadow-emerald-500/50');
+          dot?.classList.add('bg-stone-300', 'border-stone-100');
+          node.classList.remove('scale-110');
+          halo?.classList.remove('opacity-100', 'animate-ping');
+        }
+      });
+
+      isUpdating = false;
+    }
+
+    function onScroll() {
+      if (!isUpdating) {
+        isUpdating = true;
+        window.requestAnimationFrame(updateRootsOnScroll);
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', updateRootsOnScroll, { passive: true });
+
+    // Initial trigger
+    updateRootsOnScroll();
+  }
+
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollRoots);
+  } else {
+    initScrollRoots();
+  }
+</script>

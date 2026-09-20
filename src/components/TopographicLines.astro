@@ -1,0 +1,112 @@
+---
+interface Props {
+  className?: string;
+  opacity?: number;
+  strokeColor?: string;
+}
+
+const {
+  className = '',
+  opacity = 0.045,
+  strokeColor = '#1b382b',
+} = Astro.props;
+---
+
+<div
+  class={`absolute inset-0 overflow-hidden pointer-events-none z-0 ${className}`}
+  style={{ opacity }}
+  aria-hidden="true"
+>
+  <svg
+    class="w-full h-full object-cover"
+    viewBox="0 0 1200 800"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="xMidYMid slice"
+  >
+    <!-- Contorno 1050m -->
+    <path
+      d="M -100 150 C 120 180, 240 80, 450 120 C 660 160, 780 260, 980 200 C 1120 150, 1250 220, 1350 180"
+      stroke={strokeColor}
+      stroke-width="1.4"
+      stroke-dasharray="6 4"
+      fill="none"
+    />
+
+    <!-- Contorno 1075m -->
+    <path
+      d="M -100 230 C 140 250, 280 160, 480 200 C 700 240, 820 340, 1020 280 C 1160 230, 1280 300, 1350 260"
+      stroke={strokeColor}
+      stroke-width="1.2"
+      fill="none"
+    />
+
+    <!-- Contorno 1100m (Línea de cumbre) -->
+    <path
+      d="M -100 310 C 160 320, 310 240, 520 280 C 740 320, 860 420, 1060 360 C 1200 310, 1300 380, 1350 340"
+      stroke={strokeColor}
+      stroke-width="1.6"
+      fill="none"
+    />
+
+    <!-- Contorno 1125m -->
+    <path
+      d="M -100 390 C 180 390, 340 320, 560 360 C 780 400, 900 500, 1100 440 C 1240 390, 1320 460, 1350 420"
+      stroke={strokeColor}
+      stroke-width="1.2"
+      fill="none"
+    />
+
+    <!-- Contorno 1150m -->
+    <path
+      d="M -100 470 C 200 460, 370 400, 600 440 C 820 480, 940 580, 1140 520 C 1270 470, 1340 540, 1350 500"
+      stroke={strokeColor}
+      stroke-width="1.4"
+      stroke-dasharray="8 6"
+      fill="none"
+    />
+
+    <!-- Contorno 1175m -->
+    <path
+      d="M -100 550 C 220 530, 400 480, 640 520 C 860 560, 980 660, 1180 600 C 1300 550, 1360 620, 1350 580"
+      stroke={strokeColor}
+      stroke-width="1.2"
+      fill="none"
+    />
+
+    <!-- Contorno 1200m -->
+    <path
+      d="M -100 630 C 240 600, 430 560, 680 600 C 900 640, 1020 740, 1220 680 C 1330 630, 1380 700, 1350 660"
+      stroke={strokeColor}
+      stroke-width="1.6"
+      fill="none"
+    />
+
+    <!-- Curva concéntrica del Cerro (elevación local) -->
+    <ellipse
+      cx="450"
+      cy="200"
+      rx="120"
+      ry="60"
+      stroke={strokeColor}
+      stroke-width="1"
+      stroke-dasharray="4 4"
+      fill="none"
+    />
+    <ellipse
+      cx="450"
+      cy="200"
+      rx="70"
+      ry="35"
+      stroke={strokeColor}
+      stroke-width="1.2"
+      fill="none"
+    />
+    <circle
+      cx="450"
+      cy="200"
+      r="2"
+      fill={strokeColor}
+    />
+  </svg>
+</div>

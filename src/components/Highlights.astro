@@ -1,0 +1,68 @@
+---
+import { Utensils, Wind, Volume2, ShieldCheck } from 'lucide-react';
+
+const HIGHLIGHT_CARDS = [
+  {
+    title: 'Vajilla Completa Incluida',
+    description: 'Platos, cubiertos y vasos para 40 personas sin costos ocultos ni alquileres extra.',
+    badge: 'Sin cargo',
+    icon: Utensils,
+    color: 'text-emerald-700 bg-emerald-50 border-emerald-200',
+    delay: '',
+  },
+  {
+    title: 'Climatizado Todo el Año',
+    description: 'Ambiente confortable con aire acondicionado frío/calor y estufa piramidal para la terraza.',
+    badge: 'Frío / Calor',
+    icon: Wind,
+    color: 'text-sky-700 bg-sky-50 border-sky-200',
+    delay: 'reveal-delay-100',
+  },
+  {
+    title: 'Sonido JBL & Luces',
+    description: 'Torre JBL PartyBox con conexión Bluetooth de alta potencia y show de luces sincronizadas.',
+    badge: 'Bluetooth',
+    icon: Volume2,
+    color: 'text-amber-700 bg-amber-50 border-amber-200',
+    delay: 'reveal-delay-200',
+  },
+  {
+    title: 'Estacionamiento Propio',
+    description: 'Tus vehículos y los de tus invitados ingresan al predio cerrado para mayor tranquilidad.',
+    badge: 'Predio cerrado',
+    icon: ShieldCheck,
+    color: 'text-stone-700 bg-stone-100 border-stone-200',
+    delay: 'reveal-delay-300',
+  },
+];
+---
+
+<section class="py-12 bg-white border-b border-stone-200 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {HIGHLIGHT_CARDS.map((card) => {
+        const IconComponent = card.icon;
+        return (
+          <div
+            class={`reveal-item ${card.delay} spotlight-card relative p-6 rounded-2xl bg-stone-50/90 border border-stone-200/80 shadow-xs hover:shadow-lg hover:border-emerald-400/80 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col group cursor-default`}
+          >
+            <div class="flex items-center justify-between mb-4">
+              <div class={`p-3 rounded-xl border ${card.color} group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 shadow-xs`}>
+                <IconComponent className="w-6 h-6" />
+              </div>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-stone-200/70 text-stone-700 group-hover:bg-emerald-100 group-hover:text-emerald-800 transition-colors">
+                {card.badge}
+              </span>
+            </div>
+            <h3 class="text-lg font-bold text-stone-900 mb-2 group-hover:text-emerald-800 transition-colors">
+              {card.title}
+            </h3>
+            <p class="text-sm text-stone-600 leading-relaxed">
+              {card.description}
+            </p>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

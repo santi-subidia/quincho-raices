@@ -1,0 +1,78 @@
+---
+interface Props {
+  variant?: 'sunset' | 'night' | 'stone';
+  fillColor?: string;
+  className?: string;
+}
+
+const {
+  variant = 'sunset',
+  fillColor = '#ffffff',
+  className = '',
+} = Astro.props;
+
+// Colors for the 3 depth layers based on variant
+const layers = {
+  sunset: {
+    back: 'rgba(217, 100, 11, 0.35)', // Warm amber twilight ridge
+    mid: 'rgba(52, 120, 90, 0.5)',     // Molle / green mountain ridge
+    front: fillColor,                  // Solid foreground transition
+  },
+  night: {
+    back: 'rgba(52, 120, 90, 0.22)',   // Distant emerald mountain haze
+    mid: 'rgba(27, 56, 43, 0.5)',      // Mid-range night mountain
+    front: fillColor,                  // Solid footer tone
+  },
+  stone: {
+    back: 'rgba(214, 211, 209, 0.4)',  // Distant stone
+    mid: 'rgba(168, 162, 158, 0.55)',  // Mid stone
+    front: fillColor,
+  }
+}[variant];
+---
+
+<div
+  class={`relative w-full overflow-hidden pointer-events-none leading-none z-10 ${className}`}
+  aria-hidden="true"
+>
+  <svg
+    class="w-full h-14 sm:h-20 lg:h-28 block"
+    viewBox="0 0 1440 160"
+    fill="none"
+    preserveAspectRatio="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <!-- Capa 1: Cordón Serrano Lejano (Crestas altas en el horizonte) -->
+    <path
+      d="M0 70 
+         C120 50, 200 65, 340 40 
+         C460 20, 580 55, 720 30 
+         C860 10, 980 48, 1120 25 
+         C1260 8, 1360 45, 1440 35 
+         L1440 160 L0 160 Z"
+      fill={layers.back}
+    />
+
+    <!-- Capa 2: Cordón Intermedio (Cerros ondulados característicos de La Punta) -->
+    <path
+      d="M0 95 
+         C140 85, 260 70, 400 88 
+         C520 102, 640 68, 780 82 
+         C900 95, 1020 62, 1180 78 
+         C1300 90, 1390 74, 1440 80 
+         L1440 160 L0 160 Z"
+      fill={layers.mid}
+    />
+
+    <!-- Capa 3: Relieve Frontal Inmediato (Base del valle hacia el Quincho) -->
+    <path
+      d="M0 120 
+         C160 115, 300 135, 460 118 
+         C600 102, 740 125, 880 112 
+         C1020 98, 1160 124, 1320 115 
+         C1380 112, 1420 118, 1440 116 
+         L1440 160 L0 160 Z"
+      fill={layers.front}
+    />
+  </svg>
+</div>

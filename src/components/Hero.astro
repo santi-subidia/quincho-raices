@@ -1,0 +1,117 @@
+---
+import { MapPin, Calendar, Sparkles, Users, Utensils, ShieldCheck, ChevronDown } from 'lucide-react';
+import AmbientParticles from './AmbientParticles.astro';
+import MountainSilhouette from './MountainSilhouette.astro';
+---
+
+<section id="hero" class="relative min-h-[96vh] flex items-center justify-center overflow-hidden bg-stone-950 text-white pb-16 sm:pb-24">
+  <!-- Background Image with Ambient Particles & Gradient Overlay -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src="/images/sunset_terrace.jpg"
+      alt="Quincho Raíces atardecer con vista a las sierras de San Luis"
+      class="w-full h-full object-cover object-center scale-105 transition-transform duration-1000 ease-out"
+      loading="eager"
+    />
+    <!-- Multi-stop gradient for maximum text contrast and elegance -->
+    <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/80 to-stone-900/65"></div>
+    <div class="absolute inset-0 bg-radial-gradient from-transparent to-stone-950/50"></div>
+    
+    <!-- Sunset Horizon Twilight Glow behind the mountain ridges -->
+    <div class="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-amber-600/30 via-orange-500/15 to-transparent pointer-events-none"></div>
+
+    <!-- Organic Ambient Particles (Fireflies / Sunset Spores) -->
+    <AmbientParticles count={20} theme="emerald" />
+  </div>
+
+  <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12 text-center flex flex-col items-center">
+    
+    <!-- Location Pill Badge -->
+    <div class="reveal-item inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-stone-200 text-sm font-medium mb-6 shadow-lg hover:border-emerald-400/50 transition-colors">
+      <MapPin className="w-4 h-4 text-emerald-400 animate-pulse" />
+      <span>B° Aires de San Benito &bull; La Punta, San Luis</span>
+      <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+    </div>
+
+    <!-- Main Title with Editorial Serif Font -->
+    <h1 class="reveal-item reveal-delay-100 font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.18] mb-6 max-w-4xl text-balance">
+      El lugar donde tus festejos se convierten en <span class="bg-gradient-to-r from-emerald-300 via-emerald-400 to-teal-200 bg-clip-text text-transparent italic font-normal">momentos inolvidables</span>
+    </h1>
+
+    <!-- Subtitle / Value Proposition -->
+    <p class="reveal-item reveal-delay-200 text-base sm:text-xl text-stone-300 max-w-2xl mb-8 leading-relaxed font-normal">
+      Salón cerrado y climatizado para <strong class="text-white font-semibold">hasta 40 personas</strong>, piscina con solárium al pie de las sierras, gran churrasquera y <strong class="text-white font-semibold">vajilla completa sin costo extra</strong>.
+    </p>
+
+    <!-- CTAs with Micro-interactions -->
+    <div class="reveal-item reveal-delay-300 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-14">
+      <a
+        href="#cotizador"
+        class="shimmer-sweep w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-base shadow-xl shadow-emerald-950/60 hover:shadow-emerald-600/40 transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 focus:ring-offset-stone-900 cursor-pointer"
+      >
+        <Calendar className="w-5 h-5 text-emerald-200" />
+        <span>Cotizar Fecha por WhatsApp</span>
+      </a>
+
+      <a
+        href="#galeria"
+        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-base backdrop-blur-md border border-white/25 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300/40"
+      >
+        <Sparkles className="w-5 h-5 text-amber-300" />
+        <span>Ver Espacio & Galería</span>
+      </a>
+    </div>
+
+    <!-- Trust Stats Grid with Spotlight Hover Effects -->
+    <div class="reveal-item reveal-delay-400 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 w-full max-w-4xl pt-8 border-t border-white/15">
+      
+      <div class="spotlight-card spotlight-card-dark flex items-center justify-center gap-3 p-3.5 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 group">
+        <Users className="w-6 h-6 text-emerald-400 flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
+        <div class="text-left">
+          <p class="text-lg font-bold text-white leading-none">Hasta 40</p>
+          <p class="text-xs text-stone-300 mt-0.5">Personas cómodas</p>
+        </div>
+      </div>
+
+      <div class="spotlight-card spotlight-card-dark flex items-center justify-center gap-3 p-3.5 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 group">
+        <Utensils className="w-6 h-6 text-emerald-400 flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
+        <div class="text-left">
+          <p class="text-lg font-bold text-white leading-none">Vajilla 100%</p>
+          <p class="text-xs text-stone-300 mt-0.5">Incluida sin cargo</p>
+        </div>
+      </div>
+
+      <div class="spotlight-card spotlight-card-dark flex items-center justify-center gap-3 p-3.5 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 group">
+        <ShieldCheck className="w-6 h-6 text-emerald-400 flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
+        <div class="text-left">
+          <p class="text-lg font-bold text-white leading-none">Uso Exclusivo</p>
+          <p class="text-xs text-stone-300 mt-0.5">Privacidad total</p>
+        </div>
+      </div>
+
+      <div class="spotlight-card spotlight-card-dark flex items-center justify-center gap-3 p-3.5 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 group">
+        <Sparkles className="w-6 h-6 text-emerald-400 flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
+        <div class="text-left">
+          <p class="text-lg font-bold text-white leading-none">Todo el Año</p>
+          <p class="text-xs text-stone-300 mt-0.5">Frío / Calor & Estufa</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Mountain Silhouette Transition into Highlights -->
+  <div class="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
+    <MountainSilhouette position="bottom" variant="sunset" fillColor="#ffffff" />
+  </div>
+
+  <!-- Scroll Down Indicator placed nicely over mountains -->
+  <a
+    href="#amenities"
+    aria-label="Desplazarse a instalaciones"
+    class="absolute bottom-1 sm:bottom-3 left-1/2 -translate-x-1/2 z-30 p-2 text-stone-400 hover:text-emerald-600 transition-colors duration-200 animate-bounce"
+  >
+    <ChevronDown className="w-6 h-6" />
+  </a>
+</section>

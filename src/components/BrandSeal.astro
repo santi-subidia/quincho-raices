@@ -1,0 +1,117 @@
+---
+interface Props {
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+  theme?: 'dark' | 'light' | 'emerald';
+}
+
+const {
+  size = 'md',
+  className = '',
+  theme = 'dark',
+} = Astro.props;
+
+const sizeStyles = {
+  sm: 'w-24 h-24 text-[9px]',
+  md: 'w-32 h-32 text-[10px]',
+  lg: 'w-40 h-40 text-[11px]',
+}[size];
+
+const themeColors = {
+  dark: {
+    ring: 'border-white/20',
+    text: '#e7e5e4',
+    bg: 'bg-stone-900/80',
+    centerBg: '#1b382b',
+    border: 'rgba(52, 211, 153, 0.4)',
+    accent: '#34d399',
+  },
+  light: {
+    ring: 'border-stone-200',
+    text: '#1b382b',
+    bg: 'bg-white/90',
+    centerBg: '#f2f8f4',
+    border: 'rgba(52, 120, 90, 0.3)',
+    accent: '#2b6049',
+  },
+  emerald: {
+    ring: 'border-emerald-500/30',
+    text: '#a7f3d0',
+    bg: 'bg-emerald-950/80',
+    centerBg: '#064e3b',
+    border: 'rgba(52, 211, 153, 0.5)',
+    accent: '#34d399',
+  }
+}[theme];
+---
+
+<div
+  class={`relative inline-flex items-center justify-center rounded-full backdrop-blur-md shadow-xl select-none group cursor-default ${sizeStyles} ${className}`}
+  title="Quincho Raíces • Predio Exclusivo La Punta"
+>
+  <!-- Rotating Circular Text Ring -->
+  <svg
+    class="absolute inset-0 w-full h-full animate-spin-slow group-hover:[animation-play-state:paused] transition-all duration-300"
+    viewBox="0 0 160 160"
+    fill="none"
+  >
+    <path
+      id="brand-seal-path"
+      d="M 80, 80 m -62, 0 a 62,62 0 1,1 124,0 a 62,62 0 1,1 -124,0"
+      fill="none"
+    />
+    <text font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" letter-spacing="0.16em">
+      <textPath
+        href="#brand-seal-path"
+        startOffset="0%"
+        fill={themeColors.text}
+        class="uppercase text-[9.5px]"
+      >
+        • QUINCHO RAÍCES • LA PUNTA, SAN LUIS • PREDIO EXCLUSIVO •
+      </textPath>
+    </text>
+  </svg>
+
+  <!-- Inner Center Shield with Monogram & Roots -->
+  <div
+    class="relative z-10 w-[55%] h-[55%] rounded-full flex flex-col items-center justify-center border shadow-inner transition-transform duration-300 group-hover:scale-108"
+    style={{
+      backgroundColor: themeColors.centerBg,
+      borderColor: themeColors.border,
+    }}
+  >
+    <svg
+      class="w-7 h-7 sm:w-8 sm:h-8"
+      viewBox="0 0 40 40"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <!-- Leaves -->
+      <path
+        d="M20 18 C18 12, 13 8, 9 10 C8 14, 13 17, 20 18 Z"
+        fill="#34d399"
+      />
+      <path
+        d="M20 18 C22 11, 27 7, 31 9 C32 13, 27 17, 20 18 Z"
+        fill="#10b981"
+      />
+      <!-- Stem -->
+      <path
+        d="M20 17 L20 26"
+        stroke="#a7f3d0"
+        stroke-width="1.8"
+        stroke-linecap="round"
+      />
+      <!-- Roots -->
+      <path
+        d="M20 25 C18 29, 14 31, 10 33 M20 26 C20 30, 17 34, 15 35 M20 25 C22 29, 26 31, 30 33 M20 26 C20 30, 23 34, 25 35"
+        stroke="#34d399"
+        stroke-width="1.4"
+        stroke-linecap="round"
+        fill="none"
+      />
+      <!-- Sparkle -->
+      <circle cx="20" cy="17" r="1.5" fill="#fbbf24" />
+    </svg>
+  </div>
+</div>

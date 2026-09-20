@@ -1,0 +1,78 @@
+---
+interface Props {
+  className?: string;
+  opacity?: number;
+  strokeColor?: string;
+}
+
+const {
+  className = '',
+  opacity = 0.04,
+  strokeColor = '#1b382b',
+} = Astro.props;
+---
+
+<div
+  class={`absolute pointer-events-none select-none overflow-hidden z-0 ${className}`}
+  style={{ opacity }}
+  aria-hidden="true"
+>
+  <svg
+    class="w-full h-full max-w-2xl max-h-[650px]"
+    viewBox="0 0 500 500"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <!-- Geometric Monogram Circles -->
+    <circle cx="250" cy="250" r="230" stroke={strokeColor} stroke-width="2" stroke-dasharray="8 6" />
+    <circle cx="250" cy="250" r="190" stroke={strokeColor} stroke-width="1.5" />
+    
+    <!-- Central Living Root System -->
+    <path
+      d="M250 140 L250 320"
+      stroke={strokeColor}
+      stroke-width="5"
+      stroke-linecap="round"
+    />
+    
+    <!-- Deep Branching Roots -->
+    <path
+      d="M250 280 C210 320, 160 360, 110 380 M250 300 C230 350, 190 410, 170 440"
+      stroke={strokeColor}
+      stroke-width="3"
+      stroke-linecap="round"
+    />
+    <path
+      d="M250 280 C290 320, 340 360, 390 380 M250 300 C270 350, 310 410, 330 440"
+      stroke={strokeColor}
+      stroke-width="3"
+      stroke-linecap="round"
+    />
+    <path
+      d="M250 320 C240 370, 230 420, 240 460 M250 320 C260 370, 270 420, 260 460"
+      stroke={strokeColor}
+      stroke-width="2.5"
+      stroke-linecap="round"
+    />
+
+    <!-- Crown Leaves -->
+    <path
+      d="M250 160 C210 120, 150 100, 110 130 C120 180, 180 200, 250 180 Z"
+      stroke={strokeColor}
+      stroke-width="2.5"
+      fill="none"
+    />
+    <path
+      d="M250 160 C290 120, 350 100, 390 130 C380 180, 320 200, 250 180 Z"
+      stroke={strokeColor}
+      stroke-width="2.5"
+      fill="none"
+    />
+    <path
+      d="M250 140 C240 90, 250 50, 250 40 C250 50, 260 90, 250 140 Z"
+      stroke={strokeColor}
+      stroke-width="2"
+      fill="none"
+    />
+  </svg>
+</div>
