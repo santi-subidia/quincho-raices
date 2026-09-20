@@ -123,14 +123,24 @@ export const Gallery: React.FC = () => {
           {filteredPhotos.map((photo, index) => (
             <div
               key={photo.id}
+              role="button"
+              tabIndex={0}
+              aria-label={`Ver foto ampliada: ${photo.title}`}
               onClick={() => handleOpenLightbox(index)}
-              className="group relative h-72 sm:h-80 rounded-3xl overflow-hidden cursor-pointer bg-stone-100 shadow-xs hover:shadow-xl transition-all duration-400 transform hover:-translate-y-1.5 border border-stone-200/60 hover:border-emerald-300"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleOpenLightbox(index);
+                }
+              }}
+              className="group relative h-72 sm:h-80 rounded-3xl overflow-hidden cursor-pointer bg-stone-100 shadow-xs hover:shadow-xl transition-all duration-400 transform hover:-translate-y-1.5 border border-stone-200/60 hover:border-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
             >
               <img
                 src={photo.src}
                 alt={photo.title}
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"
                 loading="lazy"
+                decoding="async"
               />
               
               {/* Subtle gradient overlay with smooth reveal */}
@@ -160,6 +170,9 @@ export const Gallery: React.FC = () => {
         {/* Lightbox Modal with Smooth Entry */}
         {activePhoto && (
           <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Foto ampliada: ${activePhoto.title}`}
             className="fixed inset-0 z-50 flex items-center justify-center bg-stone-950/95 backdrop-blur-lg p-4 sm:p-6 animate-in fade-in duration-200"
             onClick={handleCloseLightbox}
           >

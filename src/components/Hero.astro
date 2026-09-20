@@ -12,6 +12,10 @@ import MountainSilhouette from './MountainSilhouette.astro';
       alt="Quincho Raíces atardecer con vista a las sierras de San Luis"
       class="w-full h-full object-cover object-center scale-105 transition-transform duration-1000 ease-out"
       loading="eager"
+      fetchpriority="high"
+      decoding="async"
+      width="1920"
+      height="1080"
     />
     <!-- Multi-stop gradient for maximum text contrast and elegance -->
     <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/80 to-stone-900/65"></div>
@@ -103,7 +107,7 @@ import MountainSilhouette from './MountainSilhouette.astro';
 
   <!-- Mountain Silhouette Transition into Highlights -->
   <div class="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
-    <MountainSilhouette position="bottom" variant="sunset" fillColor="#ffffff" />
+    <MountainSilhouette variant="sunset" fillColor="#ffffff" />
   </div>
 
   <!-- Scroll Down Indicator placed nicely over mountains -->

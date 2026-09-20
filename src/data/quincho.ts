@@ -34,6 +34,7 @@ export const QUINCHO_INFO = {
     city: 'La Punta',
     province: 'San Luis',
     country: 'Argentina',
+    fullAddress: 'B° Aires de San Benito, La Punta, San Luis',
     googleMapsUrl: 'https://maps.app.goo.gl/RhkgDqNDW5kNnLBy5',
     wazeUrl: 'https://waze.com/ul?ll=-33.2113916,-66.2907896&navigate=yes',
     coordinates: {

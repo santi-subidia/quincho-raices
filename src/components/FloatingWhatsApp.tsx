@@ -26,7 +26,11 @@ export const FloatingWhatsApp: React.FC = () => {
       
       {/* Floating Popup Card */}
       {isOpen && (
-        <div className="mb-4 w-[calc(100vw-3rem)] sm:w-96 rounded-3xl bg-white shadow-2xl border border-stone-200 overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200">
+        <div
+          role="dialog"
+          aria-label="Atención por WhatsApp"
+          className="mb-4 w-[calc(100vw-3rem)] sm:w-96 rounded-3xl bg-white shadow-2xl border border-stone-200 overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200"
+        >
           
           {/* Header */}
           <div className="bg-emerald-700 p-5 text-white flex items-center justify-between">
@@ -142,7 +146,9 @@ export const FloatingWhatsApp: React.FC = () => {
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        aria-label="Abrir chat de WhatsApp"
+        aria-label={isOpen ? "Cerrar ventana de WhatsApp" : "Abrir chat de WhatsApp"}
+        aria-expanded={isOpen}
+        aria-haspopup="dialog"
         className="shimmer-sweep group relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white shadow-xl shadow-emerald-950/30 hover:shadow-emerald-600/50 transition-all duration-300 transform hover:scale-108 active:scale-95 focus:outline-none focus:ring-4 focus:ring-emerald-400 focus:ring-offset-2 cursor-pointer"
       >
         {/* Pulsing ring */}

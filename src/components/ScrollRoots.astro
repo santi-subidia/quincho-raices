@@ -103,7 +103,7 @@ const SECTIONS = [
 
     <!-- Milestone Sprout Nodes -->
     <nav class="absolute inset-y-0 w-full flex flex-col justify-between items-center py-2 pointer-events-auto">
-      {SECTIONS.map((sec, index) => (
+      {SECTIONS.map((sec) => (
         <a
           href={sec.target}
           data-section-id={sec.id}
@@ -149,6 +149,7 @@ const SECTIONS = [
     let isUpdating = false;
 
     function updateRootsOnScroll() {
+      if (!path || !tipOrb) return;
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       

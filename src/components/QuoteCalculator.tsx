@@ -119,11 +119,12 @@ Quisiera consultar disponibilidad y cotización para mi evento:
               
               {/* 1. Tipo de Evento */}
               <div>
-                <label className="text-sm font-semibold text-stone-200 mb-2 flex items-center gap-2">
+                <label htmlFor="event-type-select" className="text-sm font-semibold text-stone-200 mb-2 flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-emerald-400" />
                   <span>1. ¿Qué motivo vas a celebrar?</span>
                 </label>
                 <select
+                  id="event-type-select"
                   value={eventType}
                   onChange={(e) => setEventType(e.target.value)}
                   className="w-full bg-stone-900/90 border border-stone-700 rounded-xl px-4 py-3 text-stone-100 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all cursor-pointer"
@@ -138,17 +139,19 @@ Quisiera consultar disponibilidad y cotización para mi evento:
 
               {/* 2. Cantidad de Personas */}
               <div>
-                <label className="text-sm font-semibold text-stone-200 mb-2 flex items-center gap-2">
+                <label className="text-sm font-semibold text-stone-200 mb-2 flex items-center gap-2" id="guests-group-label">
                   <Users className="w-4 h-4 text-emerald-400" />
                   <span>2. Cantidad estimada de invitados</span>
                 </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <div role="radiogroup" aria-labelledby="guests-group-label" className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {GUEST_OPTIONS.map((opt) => {
                     const isSelected = guests === opt;
                     return (
                       <button
                         key={opt}
                         type="button"
+                        role="radio"
+                        aria-checked={isSelected}
                         onClick={() => setGuests(opt)}
                         className={`px-3 py-2.5 rounded-xl text-xs font-medium text-left border transition-all duration-200 cursor-pointer active:scale-95 flex items-center justify-between ${
                           isSelected
@@ -167,11 +170,12 @@ Quisiera consultar disponibilidad y cotización para mi evento:
               {/* 3. Turno & 4. Fecha */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-semibold text-stone-200 mb-2 flex items-center gap-2">
+                  <label htmlFor="shift-select" className="text-sm font-semibold text-stone-200 mb-2 flex items-center gap-2">
                     <Clock className="w-4 h-4 text-emerald-400" />
                     <span>3. Turno preferido</span>
                   </label>
                   <select
+                    id="shift-select"
                     value={shift}
                     onChange={(e) => setShift(e.target.value)}
                     className="w-full bg-stone-900/90 border border-stone-700 rounded-xl px-3 py-3 text-stone-100 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent cursor-pointer"
@@ -185,11 +189,12 @@ Quisiera consultar disponibilidad y cotización para mi evento:
                 </div>
 
                 <div>
-                  <label className="text-sm font-semibold text-stone-200 mb-2 flex items-center gap-2">
+                  <label htmlFor="tentative-date-input" className="text-sm font-semibold text-stone-200 mb-2 flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-emerald-400" />
                     <span>4. Fecha tentativa</span>
                   </label>
                   <input
+                    id="tentative-date-input"
                     type="date"
                     min={todayStr}
                     value={tentativeDate}
@@ -201,17 +206,19 @@ Quisiera consultar disponibilidad y cotización para mi evento:
 
               {/* 5. Selector de Línea de Contacto */}
               <div>
-                <label className="text-sm font-semibold text-stone-200 mb-2 flex items-center gap-2">
+                <label className="text-sm font-semibold text-stone-200 mb-2 flex items-center gap-2" id="line-group-label">
                   <PhoneCall className="w-4 h-4 text-emerald-400" />
                   <span>5. Línea de WhatsApp para contactar</span>
                 </label>
-                <div className="grid grid-cols-2 gap-3">
+                <div role="radiogroup" aria-labelledby="line-group-label" className="grid grid-cols-2 gap-3">
                   {CONTACT_LINES.map((line) => {
                     const isSelected = selectedLineId === line.id;
                     return (
                       <button
                         key={line.id}
                         type="button"
+                        role="radio"
+                        aria-checked={isSelected}
                         onClick={() => setSelectedLineId(line.id)}
                         className={`p-3 rounded-xl border text-left transition-all cursor-pointer active:scale-95 flex items-center justify-between ${
                           isSelected
@@ -232,10 +239,11 @@ Quisiera consultar disponibilidad y cotización para mi evento:
 
               {/* Comentarios extra (opcional) */}
               <div>
-                <label className="block text-xs font-medium text-stone-400 mb-1">
+                <label htmlFor="comment-input" className="block text-xs font-medium text-stone-400 mb-1">
                   Comentario adicional o duda específica (opcional)
                 </label>
                 <input
+                  id="comment-input"
                   type="text"
                   placeholder="Ej: ¿Se puede ingresar una hora antes para decorar?"
                   value={comments}
@@ -291,6 +299,7 @@ Quisiera consultar disponibilidad y cotización para mi evento:
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Enviar consulta de cotización por WhatsApp a Quincho Raíces"
                   className="shimmer-sweep w-full flex items-center justify-center gap-3 py-4 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-base shadow-xl shadow-emerald-950/80 hover:shadow-emerald-600/40 transition-all duration-300 transform hover:-translate-y-1 active:scale-98"
                 >
                   <Send className="w-5 h-5" />
