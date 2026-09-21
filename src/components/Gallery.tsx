@@ -90,7 +90,7 @@ export const Gallery: React.FC = () => {
             Recorré nuestras instalaciones
           </h2>
           <p className="text-base sm:text-lg text-stone-600">
-            Cada rincón de Quincho Raíces pensado para disfrutar al máximo: salón cómodo y equipado, mesas y sillas para 40 personas, cocina con horno y freezer, piscina, parrilla y sonido JBL, todo en planta baja.
+            Cada rincón de Quincho Raíces pensado para disfrutar al máximo: salón cómodo y equipado, mesas y sillas para 40 personas, cocina con horno y freezer, piscina, parrilla y sonido con Bluetooth, todo en planta baja.
           </p>
         </div>
 

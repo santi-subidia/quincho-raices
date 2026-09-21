@@ -28,7 +28,7 @@ export const QUINCHO_INFO = {
   tagline: 'El lugar para tu evento',
   headline: 'El lugar donde tus festejos se convierten en momentos inolvidables',
   description:
-    'Quincho privado y exclusivo en La Punta, San Luis. Ideal para cumpleaños, reuniones, talleres y celebraciones. Totalmente en planta baja para hasta 40 personas, con vajilla incluida, WiFi, cocina con horno y hornallas, freezer, baños, calefacción, parrilla, piscina y parlante JBL con Bluetooth.',
+    'Quincho privado y exclusivo en La Punta, San Luis. Ideal para cumpleaños, reuniones, talleres y celebraciones. Totalmente en planta baja para hasta 40 personas, con vajilla incluida, WiFi, cocina con horno y hornallas, freezer, baños, calefacción, parrilla, piscina y sonido con Bluetooth.',
   location: {
     neighborhood: 'B° Aires de San Benito',
     city: 'La Punta',
@@ -60,6 +60,7 @@ export interface Amenity {
   icon: string;
   image?: string;
   highlight?: boolean;
+  features: string[];
 }
 
 export const AMENITIES: Amenity[] = [
@@ -68,76 +69,116 @@ export const AMENITIES: Amenity[] = [
     title: 'Salón Cómodo y Equipado',
     subtitle: 'Mesas y sillas para 40 personas',
     description:
-      'Espacio cómodo y totalmente equipado en planta baja, con mesas y sillas para 40 comensales, calefacción y excelente iluminación.',
+      'Espacio cerrado, cómodo y funcional en planta baja, con mobiliario completo y calefacción para que tus invitados disfruten con total confort.',
     icon: 'Users',
     image: '/images/salon_interior_banquet.jpg',
     highlight: true,
+    features: [
+      'Mesas y sillas para 40 comensales',
+      'Calefacción para eventos todo el año',
+      'Excelente iluminación natural y artificial',
+    ],
   },
   {
-    id: 'pool',
-    title: 'Piscina para Disfrutar',
-    subtitle: 'Un buen rato bajo el agua',
+    id: 'tableware',
+    title: 'Vajilla Completa Incluida',
+    subtitle: 'Sin cargos extra por vajilla',
     description:
-      'Piscina en entorno verde para pasar un buen rato bajo el agua, refrescarse y disfrutar en familia o con amigos.',
-    icon: 'Waves',
-    image: '/images/pool_mountains.jpg',
+      'Platos, cubiertos y vasos para 40 personas incluidos en tu alquiler. Llegás y festejás sin preocuparte por alquilar ni lavar después.',
+    icon: 'Utensils',
+    image: '/images/salon_panoramic.jpg',
     highlight: true,
+    features: [
+      'Platos playos y hondos para 40 personas',
+      'Juegos de cubiertos completos',
+      'Vasos de vidrio incluidos sin costo adicional',
+    ],
+  },
+  {
+    id: 'kitchen',
+    title: 'Cocina con Horno & Freezer',
+    subtitle: 'Equipada para tu evento',
+    description:
+      'Sector de cocina independiente con horno y hornallas, más freezer para mantener frías bebidas y alimentos, con mesada cómoda para organizar tu comida.',
+    icon: 'UtensilsCrossed',
+    image: '/images/kitchen_dining.jpg',
+    features: [
+      'Cocina con horno y hornallas funcionales',
+      'Freezer espacioso para bebidas y hielo',
+      'Mesada amplia y bacha con agua corriente',
+    ],
   },
   {
     id: 'grill',
     title: 'Parrilla para Asados',
     subtitle: 'El punto de encuentro',
     description:
-      'Parrilla cómoda para preparar tus asados, en un espacio muy bien iluminado tanto de día como de noche.',
+      'Parrilla amplia y cómoda para preparar tus mejores asados, en un espacio muy bien iluminado tanto de día como de noche.',
     icon: 'Flame',
     image: '/images/parrilla_churrasquera.jpg',
     highlight: true,
+    features: [
+      'Parrilla de excelente tiraje y amplitud',
+      'Iluminación dedicada para asados nocturnos',
+      'Espacio cómodo para el asador y comensales',
+    ],
   },
   {
-    id: 'kitchen',
-    title: 'Cocina con Horno y Hornallas',
-    subtitle: 'Equipada con freezer',
+    id: 'pool',
+    title: 'Piscina para Disfrutar',
+    subtitle: 'Un buen rato bajo el agua',
     description:
-      'Cocina con horno y hornallas, además de freezer para mantener frías bebidas y alimentos, con mesada cómoda para organizar tu comida.',
-    icon: 'UtensilsCrossed',
-    image: '/images/kitchen_dining.jpg',
-  },
-  {
-    id: 'tableware',
-    title: 'Vajilla Completa Incluida',
-    subtitle: 'Para 40 personas sin cargo extra',
-    description:
-      'Platos, cubiertos y vasos para 40 personas incluidos en tu alquiler. Llegás y festejás sin preocuparte por alquilar ni lavar.',
-    icon: 'CheckCircle2',
-    image: '/images/salon_panoramic.jpg',
+      'Piscina en entorno verde para pasar un buen rato bajo el agua, refrescarse y disfrutar al aire libre en familia o con amigos.',
+    icon: 'Waves',
+    image: '/images/pool_mountains.jpg',
     highlight: true,
+    features: [
+      'Piscina cuidada para disfrutar bajo el agua',
+      'Parque verde con vista a las sierras',
+      'Entorno seguro y relajante al aire libre',
+    ],
   },
   {
     id: 'sound',
-    title: 'Parlante JBL con Bluetooth',
-    subtitle: 'Poné la música que desees',
+    title: 'Sonido',
+    subtitle: 'Con acceso a Bluetooth',
     description:
-      'Parlante JBL con acceso a Bluetooth para conectar tu celular fácilmente y poner la música que quieras durante todo el evento.',
-    icon: 'Speaker',
+      'Equipo de sonido con acceso a Bluetooth para conectar tu celular fácilmente y poner la música que quieras durante todo el evento.',
+    icon: 'Volume2',
     image: '/images/sound_jbl_party.jpg',
+    features: [
+      'Conexión Bluetooth rápida y sencilla',
+      'Conectá tu celular y poné tu música preferida',
+      'Ambientación sonora para toda tu reunión',
+    ],
   },
   {
     id: 'heater',
     title: 'Calefacción & Baños',
-    subtitle: 'Confort en cualquier época',
+    subtitle: 'Confort e higiene en cualquier época',
     description:
-      'Salón con calefacción para disfrutar con temperatura agradable todo el año, además de baños completos y limpios.',
+      'Salón con calefacción para disfrutar con temperatura agradable todo el año, además de baños completos, modernos y siempre higiénicos.',
     icon: 'ThermometerSun',
     image: '/images/sunset_terrace.jpg',
+    features: [
+      'Baños completos, limpios y equipados',
+      'Calefacción para días frescos o de noche',
+      'Acceso cómodo e integrado al salón principal',
+    ],
   },
   {
     id: 'parking',
-    title: 'Bien Iluminado & WiFi',
-    subtitle: 'Todo en planta baja (sin terraza)',
+    title: '100% Planta Baja, WiFi & Luces',
+    subtitle: 'Totalmente accesible y conectado',
     description:
-      'Espacio bien iluminado tanto adentro como afuera, con conexión WiFi en todo el predio, estacionamiento cerrado y 100% en planta baja sin desniveles.',
+      'Espacio bien iluminado tanto adentro como afuera, con conexión WiFi en todo el predio, estacionamiento cerrado y todo en planta baja sin desniveles ni terrazas.',
     icon: 'ShieldCheck',
     image: '/images/pool_tree_window.jpg',
+    features: [
+      '100% en planta baja sin escaleras ni desniveles',
+      'Iluminación potente interior y exterior',
+      'WiFi de alta velocidad y predio cerrado',
+    ],
   },
 ];
 
@@ -159,7 +200,7 @@ export const QUICK_HIGHLIGHTS: QuickHighlight[] = [
     icon: 'UtensilsCrossed',
   },
   {
-    title: 'Parlante JBL Bluetooth',
+    title: 'Sonido con Bluetooth',
     description: 'Conectá tu música preferida vía Bluetooth de forma simple y rápida.',
     icon: 'Volume2',
   },
@@ -237,11 +278,11 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
   },
   {
     id: 'sound-party',
-    title: 'Parlante JBL con Bluetooth',
+    title: 'Sonido con Bluetooth',
     category: 'grill',
     categoryLabel: 'Música',
     src: '/images/sound_jbl_party.jpg',
-    description: 'Parlante JBL con acceso Bluetooth para ambientar tu festejo con la música que quieras.',
+    description: 'Equipo de sonido con acceso Bluetooth para ambientar tu festejo con la música que quieras.',
     aspect: 'landscape',
   },
   {
@@ -289,8 +330,8 @@ export const EVENT_TYPES: EventType[] = [
     title: 'Cumpleaños',
     tagline: 'Infantiles y de adultos',
     description:
-      'El lugar ideal para festejar con seres queridos: salón cómodo para 40 personas, vajilla incluida, piscina para divertirse y parlante JBL.',
-    benefits: ['Vajilla incluida para 40 personas', 'Parlante JBL con Bluetooth', 'Piscina para disfrutar bajo el agua'],
+      'El lugar ideal para festejar con seres queridos: salón cómodo para 40 personas, vajilla incluida, piscina para divertirse y sonido con Bluetooth.',
+    benefits: ['Vajilla incluida para 40 personas', 'Sonido con Bluetooth', 'Piscina para disfrutar bajo el agua'],
     recommendedShifts: 'Día Completo o Tarde/Noche',
     icon: 'PartyPopper',
   },
@@ -319,7 +360,7 @@ export const EVENT_TYPES: EventType[] = [
     title: 'Celebraciones & Fiestas',
     tagline: 'Todo equipado para tu evento',
     description:
-      'Espacio bien iluminado tanto dentro como afuera, con calefacción, sonido JBL y la tranquilidad de tener todo en un mismo nivel.',
+      'Espacio bien iluminado tanto dentro como afuera, con calefacción, sonido con Bluetooth y la tranquilidad de tener todo en un mismo nivel.',
     benefits: ['Iluminación interior y exterior', 'Calefacción en el salón', 'Totalmente en planta baja'],
     recommendedShifts: 'Turno Noche o Día Completo',
     icon: 'MoonStar',
@@ -335,7 +376,7 @@ export const FAQS: FAQItem[] = [
   {
     question: '¿Qué incluye el alquiler de Quincho Raíces?',
     answer:
-      'El alquiler incluye el uso exclusivo del predio durante el turno contratado: salón cerrado y cómodo en planta baja con mesas y sillas para 40 personas, vajilla completa incluida, cocina con horno y hornallas, freezer, baños y calefacción. En el exterior cuenta con parrilla, piscina para pasar un buen rato bajo el agua, excelente iluminación tanto dentro como afuera, WiFi en todo el predio y parlante JBL con Bluetooth para que pongas la música que desees.',
+      'El alquiler incluye el uso exclusivo del predio durante el turno contratado: salón cerrado y cómodo en planta baja con mesas y sillas para 40 personas, vajilla completa incluida, cocina con horno y hornallas, freezer, baños y calefacción. En el exterior cuenta con parrilla, piscina para pasar un buen rato bajo el agua, excelente iluminación tanto dentro como afuera, WiFi en todo el predio y sonido con Bluetooth para que pongas la música que desees.',
   },
   {
     question: '¿Para qué tipo de eventos es ideal el salón?',

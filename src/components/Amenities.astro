@@ -1,142 +1,176 @@
 ---
-import { Image } from 'astro:assets';
-import { AMENITIES } from '../data/quincho';
+import { AMENITIES, CONTACT_LINES, buildWhatsAppLink } from '../data/quincho';
 import {
   Users,
-  Waves,
-  Flame,
+  Utensils,
   UtensilsCrossed,
-  CheckCircle2,
-  Speaker,
+  Flame,
+  Waves,
+  Volume2,
   ThermometerSun,
   ShieldCheck,
-  Check
+  Check,
+  Sparkles,
+  MessageCircle,
+  Calculator,
+  ArrowRight,
 } from 'lucide-react';
-
-import salonImg from '../assets/images/salon_interior_banquet.jpg';
-import poolImg from '../assets/images/pool_mountains.jpg';
-import grillImg from '../assets/images/parrilla_churrasquera.jpg';
-import kitchenImg from '../assets/images/kitchen_dining.jpg';
-import tablewareImg from '../assets/images/salon_panoramic.jpg';
-import soundImg from '../assets/images/sound_jbl_party.jpg';
-import heaterImg from '../assets/images/sunset_terrace.jpg';
-import parkingImg from '../assets/images/pool_tree_window.jpg';
-
-const amenityImages: Record<string, ImageMetadata> = {
-  salon: salonImg,
-  pool: poolImg,
-  grill: grillImg,
-  kitchen: kitchenImg,
-  tableware: tablewareImg,
-  sound: soundImg,
-  heater: heaterImg,
-  parking: parkingImg,
-};
 
 const iconMap: Record<string, any> = {
   Users,
-  Waves,
-  Flame,
+  Utensils,
   UtensilsCrossed,
-  CheckCircle2,
-  Speaker,
+  Flame,
+  Waves,
+  Volume2,
   ThermometerSun,
   ShieldCheck,
 };
+
+const quickSpecs = [
+  { label: '40 Personas sentadas', sub: 'Mesas y sillas incluidas' },
+  { label: 'Vajilla completa', sub: 'Sin costo adicional' },
+  { label: 'Cocina con horno', sub: 'Hornallas y freezer' },
+  { label: 'Parrilla privada', sub: 'Con iluminación nocturna' },
+  { label: 'Piscina al aire libre', sub: 'Para disfrutar bajo el agua' },
+  { label: 'Sonido con Bluetooth', sub: 'Conectá tu celular' },
+  { label: 'Calefacción & Baños', sub: 'Confort todo el año' },
+  { label: '100% Planta baja', sub: 'Sin escaleras ni terrazas' },
+];
+
+const waMessage = '¡Hola Quincho Raíces! 👋 Quería consultar por disponibilidad y saber más sobre lo que incluye el salón.';
+const waUrl = buildWhatsAppLink(CONTACT_LINES[0].phoneRaw, waMessage);
 ---
 
-<section id="amenities" class="py-20 bg-stone-50 relative">
+<section id="amenities" class="py-20 sm:py-24 bg-stone-50 relative border-b border-stone-200">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Section Header -->
-    <div class="reveal-item text-center max-w-3xl mx-auto mb-16">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold tracking-wide uppercase mb-3 shadow-2xs">
-        Instalaciones & Comodidades
+    <div class="reveal-item text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold tracking-wide uppercase mb-3.5 shadow-2xs">
+        <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
+        <span>Equipamiento & Instalaciones</span>
       </div>
-      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight mb-4">
-        Todo lo que necesitás para que tu evento sea perfecto
+      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 tracking-tight mb-4 text-balance">
+        Todo lo que incluye el quincho para tu evento
       </h2>
-      <p class="text-base sm:text-lg text-stone-600">
-        Diseñado y equipado para brindarte confort, seguridad y la mejor vista a las sierras puntanas en cada momento.
+      <p class="text-base sm:text-lg text-stone-600 leading-relaxed max-w-2xl mx-auto">
+        Instalaciones preparadas para recibir hasta 40 personas con total comodidad: mobiliario, vajilla, cocina equipada, recreación y servicios, todo en planta baja y sin costos ocultos.
       </p>
     </div>
 
-    <!-- Featured Amenities Grid (Card with Photo + Details) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-      {AMENITIES.slice(0, 6).map((amenity, index) => {
+    <!-- Quick-Glance Inventory Strip -->
+    <div class="reveal-item reveal-delay-100 mb-14">
+      <div class="p-4 sm:p-6 rounded-3xl bg-white border border-stone-200/90 shadow-xs">
+        <div class="text-center sm:text-left mb-4 flex items-center justify-between flex-wrap gap-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-stone-500">Resumen rápido de lo que incluye:</span>
+          <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+            Sin cargos sorpresa por vajilla ni sonido
+          </span>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4">
+          {quickSpecs.map((spec) => (
+            <div class="flex flex-col items-center sm:items-start p-3 rounded-2xl bg-stone-50 border border-stone-200/60 hover:bg-emerald-50/50 hover:border-emerald-200 transition-colors">
+              <span class="text-xs sm:text-sm font-bold text-stone-900 leading-tight mb-0.5 text-center sm:text-left">
+                {spec.label}
+              </span>
+              <span class="text-[11px] text-stone-500 leading-tight text-center sm:text-left">
+                {spec.sub}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 Amenities Inventory Grid (Icon-driven, Rich Feature Cards) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+      {AMENITIES.map((amenity, index) => {
         const IconComponent = iconMap[amenity.icon] || Check;
-        const delayClass = index % 3 === 0 ? '' : index % 3 === 1 ? 'reveal-delay-100' : 'reveal-delay-200';
-        const imgObj = amenityImages[amenity.id];
+        const delayClass =
+          index % 4 === 0
+            ? ''
+            : index % 4 === 1
+            ? 'reveal-delay-100'
+            : index % 4 === 2
+            ? 'reveal-delay-200'
+            : 'reveal-delay-300';
+
         return (
-          <div class={`reveal-item ${delayClass} spotlight-card group flex flex-col bg-white rounded-3xl overflow-hidden border border-stone-200/80 shadow-xs hover:shadow-xl hover:-translate-y-1.5 hover:border-emerald-300/80 transition-all duration-300 cursor-default`}>
-            {imgObj && (
-              <div class="relative h-52 w-full overflow-hidden bg-stone-100">
-                <Image
-                  src={imgObj}
-                  alt={amenity.title}
-                  class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"
-                  loading="lazy"
-                  widths={[400, 800]}
-                  sizes="(max-width: 768px) 100vw, 400px"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-stone-950/20 to-transparent"></div>
-                <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white">
-                  <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-stone-900/70 backdrop-blur-md border border-white/20 shadow-xs">
-                    {amenity.subtitle}
-                  </span>
-                </div>
+          <div
+            class={`reveal-item ${delayClass} spotlight-card group flex flex-col p-6 rounded-3xl bg-white border border-stone-200/90 shadow-xs hover:shadow-xl hover:-translate-y-1.5 hover:border-emerald-400/80 transition-all duration-300 relative cursor-default`}
+          >
+            <!-- Card Header: Icon & Subtitle Tag -->
+            <div class="flex items-center justify-between gap-3 mb-4">
+              <div class="p-3 rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-100 group-hover:bg-emerald-600 group-hover:text-white group-hover:scale-105 group-hover:rotate-2 transition-all duration-300 shadow-2xs">
+                <IconComponent className="w-5 h-5" />
               </div>
-            )}
-            
-            <div class="p-6 flex-1 flex flex-col">
-              <div class="flex items-center gap-3 mb-3">
-                <div class="p-2.5 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-100 group-hover:bg-emerald-600 group-hover:text-white group-hover:rotate-3 transition-all duration-300 shadow-2xs">
-                  <IconComponent className="w-5 h-5" />
-                </div>
-                <h3 class="text-xl font-bold text-stone-900 group-hover:text-emerald-800 transition-colors">
-                  {amenity.title}
-                </h3>
-              </div>
-              <p class="text-sm text-stone-600 leading-relaxed flex-1">
-                {amenity.description}
-              </p>
+              <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-stone-100 text-stone-700 group-hover:bg-emerald-50 group-hover:text-emerald-800 transition-colors">
+                {amenity.subtitle}
+              </span>
+            </div>
+
+            <!-- Title & Main Description -->
+            <h3 class="text-xl font-bold font-serif text-stone-900 group-hover:text-emerald-800 transition-colors mb-2">
+              {amenity.title}
+            </h3>
+            <p class="text-sm text-stone-600 leading-relaxed mb-5">
+              {amenity.description}
+            </p>
+
+            <!-- Detailed Features Checklist -->
+            <div class="mt-auto pt-4 border-t border-stone-100">
+              <span class="text-[11px] font-bold text-stone-400 uppercase tracking-wider block mb-2.5">
+                Detalle del equipamiento:
+              </span>
+              <ul class="space-y-2">
+                {amenity.features && amenity.features.map((feat) => (
+                  <li class="flex items-start gap-2 text-xs sm:text-sm text-stone-700">
+                    <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span class="leading-snug">{feat}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         );
       })}
     </div>
 
-    <!-- Additional Amenities Row (2 items: Heater & Parking) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {AMENITIES.slice(6, 8).map((amenity, index) => {
-        const IconComponent = iconMap[amenity.icon] || Check;
-        const delayClass = index === 0 ? '' : 'reveal-delay-100';
-        const imgObj = amenityImages[amenity.id];
-        return (
-          <div class={`reveal-item ${delayClass} spotlight-card flex flex-col sm:flex-row items-center gap-6 p-6 rounded-3xl bg-white border border-stone-200/80 shadow-xs hover:shadow-lg hover:-translate-y-1 hover:border-emerald-300/80 transition-all duration-300 group cursor-default`}>
-            {imgObj && (
-              <Image
-                src={imgObj}
-                alt={amenity.title}
-                class="w-full sm:w-36 h-32 rounded-2xl object-cover transition-transform duration-500 group-hover:scale-105"
-                width={144}
-                height={128}
-                loading="lazy"
-              />
-            )}
-            <div class="flex-1 text-left">
-              <div class="flex items-center gap-2 mb-1">
-                <div class="p-1.5 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-100 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-200">
-                  <IconComponent className="w-4 h-4" />
-                </div>
-                <h4 class="text-lg font-bold text-stone-900 group-hover:text-emerald-800 transition-colors">{amenity.title}</h4>
-              </div>
-              <p class="text-xs font-semibold text-emerald-700 uppercase tracking-wide mb-2">{amenity.subtitle}</p>
-              <p class="text-sm text-stone-600 leading-relaxed">{amenity.description}</p>
-            </div>
-          </div>
-        );
-      })}
+    <!-- Bottom Assurance & Action Callout -->
+    <div class="reveal-item reveal-delay-200 rounded-3xl bg-gradient-to-br from-stone-900 via-stone-850 to-stone-900 text-white p-8 sm:p-10 shadow-xl border border-stone-800 flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div class="max-w-2xl text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold mb-3 border border-emerald-500/30">
+          <Check className="w-3.5 h-3.5" />
+          <span>Transparencia total en tu estadía</span>
+        </div>
+        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white mb-2">
+          Todo lo que ves acá está listo para usar el día de tu evento
+        </h3>
+        <p class="text-stone-300 text-sm sm:text-base leading-relaxed">
+          No cobramos cargos extra por el uso de la vajilla para 40 personas, la piscina, la parrilla ni el equipo de sonido. Llegás, disfrutás con tus invitados y te vas tranquilo.
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto shrink-0">
+        <a
+          href="#cotizador"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-md transition-all duration-200 cursor-pointer active:scale-95"
+        >
+          <Calculator className="w-4 h-4" />
+          <span>Calcular Presupuesto</span>
+        </a>
+        <a
+          href={waUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-sm border border-white/20 transition-all duration-200 cursor-pointer active:scale-95"
+        >
+          <MessageCircle className="w-4 h-4 text-emerald-400" />
+          <span>Consultar por WhatsApp</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </a>
+      </div>
     </div>
 
   </div>
