@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import { QUINCHO_INFO, CONTACT_LINES, buildWhatsAppLink } from '../data/quincho';
 import { Phone, MapPin, Heart } from 'lucide-react';
 import MountainSilhouette from './MountainSilhouette.astro';
+import logoImg from '../assets/images/logo_profile.jpg';
 
 const currentYear = new Date().getFullYear();
 ---
@@ -18,12 +20,12 @@ const currentYear = new Date().getFullYear();
       <!-- Brand & Description (5 cols) -->
       <div class="lg:col-span-5 space-y-4">
         <div class="flex items-center gap-3">
-          <img
-            src="/images/logo_profile.jpg"
+          <Image
+            src={logoImg}
             alt="Logo Quincho Raíces"
             class="w-12 h-12 rounded-full object-cover border-2 border-emerald-500 shadow-md shadow-emerald-950/40"
-            width="48"
-            height="48"
+            width={48}
+            height={48}
             loading="lazy"
           />
           <div>

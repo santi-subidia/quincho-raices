@@ -141,6 +141,9 @@ export const Gallery: React.FC = () => {
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"
                 loading="lazy"
                 decoding="async"
+                width={600}
+                height={400}
+                data-image-component="true"
               />
               
               {/* Subtle gradient overlay with smooth reveal */}
@@ -220,6 +223,9 @@ export const Gallery: React.FC = () => {
                 src={activePhoto.src}
                 alt={activePhoto.title}
                 className="max-h-[70vh] w-auto max-w-full object-contain rounded-2xl shadow-2xl animate-in zoom-in-95 duration-200"
+                width={1200}
+                height={800}
+                data-image-component="true"
               />
 
               {/* Caption & WhatsApp Action */}

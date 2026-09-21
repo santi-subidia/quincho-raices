@@ -1,21 +1,21 @@
 ---
+import { Image } from 'astro:assets';
 import { MapPin, Calendar, Sparkles, Users, Utensils, ShieldCheck, ChevronDown } from 'lucide-react';
 import AmbientParticles from './AmbientParticles.astro';
 import MountainSilhouette from './MountainSilhouette.astro';
+import heroBg from '../assets/images/sunset_terrace.jpg';
 ---
 
 <section id="hero" class="relative min-h-[96vh] flex items-center justify-center overflow-hidden bg-stone-950 text-white pb-16 sm:pb-24">
   <!-- Background Image with Ambient Particles & Gradient Overlay -->
   <div class="absolute inset-0 z-0">
-    <img
-      src="/images/sunset_terrace.jpg"
+    <Image
+      src={heroBg}
       alt="Quincho Raíces atardecer con vista a las sierras de San Luis"
       class="w-full h-full object-cover object-center scale-105 transition-transform duration-1000 ease-out"
       loading="eager"
-      fetchpriority="high"
-      decoding="async"
-      width="1920"
-      height="1080"
+      widths={[640, 1024, 1920]}
+      sizes="100vw"
     />
     <!-- Multi-stop gradient for maximum text contrast and elegance -->
     <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/80 to-stone-900/65"></div>

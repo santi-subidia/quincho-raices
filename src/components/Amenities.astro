@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { AMENITIES } from '../data/quincho';
 import {
   Snowflake,
@@ -11,6 +12,26 @@ import {
   ShieldCheck,
   Check
 } from 'lucide-react';
+
+import salonImg from '../assets/images/salon_interior_banquet.jpg';
+import poolImg from '../assets/images/pool_mountains.jpg';
+import grillImg from '../assets/images/parrilla_churrasquera.jpg';
+import kitchenImg from '../assets/images/kitchen_dining.jpg';
+import tablewareImg from '../assets/images/salon_panoramic.jpg';
+import soundImg from '../assets/images/sound_jbl_party.jpg';
+import heaterImg from '../assets/images/sunset_terrace.jpg';
+import parkingImg from '../assets/images/pool_tree_window.jpg';
+
+const amenityImages: Record<string, ImageMetadata> = {
+  salon: salonImg,
+  pool: poolImg,
+  grill: grillImg,
+  kitchen: kitchenImg,
+  tableware: tablewareImg,
+  sound: soundImg,
+  heater: heaterImg,
+  parking: parkingImg,
+};
 
 const iconMap: Record<string, any> = {
   Snowflake,
@@ -45,15 +66,18 @@ const iconMap: Record<string, any> = {
       {AMENITIES.slice(0, 6).map((amenity, index) => {
         const IconComponent = iconMap[amenity.icon] || Check;
         const delayClass = index % 3 === 0 ? '' : index % 3 === 1 ? 'reveal-delay-100' : 'reveal-delay-200';
+        const imgObj = amenityImages[amenity.id];
         return (
           <div class={`reveal-item ${delayClass} spotlight-card group flex flex-col bg-white rounded-3xl overflow-hidden border border-stone-200/80 shadow-xs hover:shadow-xl hover:-translate-y-1.5 hover:border-emerald-300/80 transition-all duration-300 cursor-default`}>
-            {amenity.image && (
+            {imgObj && (
               <div class="relative h-52 w-full overflow-hidden bg-stone-100">
-                <img
-                  src={amenity.image}
+                <Image
+                  src={imgObj}
                   alt={amenity.title}
                   class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"
                   loading="lazy"
+                  widths={[400, 800]}
+                  sizes="(max-width: 768px) 100vw, 400px"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-stone-950/20 to-transparent"></div>
                 <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white">
@@ -87,13 +111,16 @@ const iconMap: Record<string, any> = {
       {AMENITIES.slice(6, 8).map((amenity, index) => {
         const IconComponent = iconMap[amenity.icon] || Check;
         const delayClass = index === 0 ? '' : 'reveal-delay-100';
+        const imgObj = amenityImages[amenity.id];
         return (
           <div class={`reveal-item ${delayClass} spotlight-card flex flex-col sm:flex-row items-center gap-6 p-6 rounded-3xl bg-white border border-stone-200/80 shadow-xs hover:shadow-lg hover:-translate-y-1 hover:border-emerald-300/80 transition-all duration-300 group cursor-default`}>
-            {amenity.image && (
-              <img
-                src={amenity.image}
+            {imgObj && (
+              <Image
+                src={imgObj}
                 alt={amenity.title}
                 class="w-full sm:w-36 h-32 rounded-2xl object-cover transition-transform duration-500 group-hover:scale-105"
+                width={144}
+                height={128}
                 loading="lazy"
               />
             )}
