@@ -13,11 +13,10 @@ import {
 } from 'lucide-react';
 
 const EVENT_OPTIONS = [
-  'Cumpleaños Infantil / Adulto',
-  'Asado Familiar / Amigos',
-  'Fiesta Nocturna / Despedida',
-  'Almuerzo de Domingo',
-  'Reunión Corporativa / Taller',
+  'Cumpleaños',
+  'Reunión Familiar o de Amigos',
+  'Talleres y Capacitaciones',
+  'Celebraciones y Fiestas',
   'Otro motivo especial',
 ];
 

@@ -28,7 +28,7 @@ export const QUINCHO_INFO = {
   tagline: 'El lugar para tu evento',
   headline: 'El lugar donde tus festejos se convierten en momentos inolvidables',
   description:
-    'Quincho privado y exclusivo en La Punta, San Luis. Equipado para hasta 40 personas con piscina, churrasquera, vajilla completa incluida, salón climatizado y sonido JBL.',
+    'Quincho privado y exclusivo en La Punta, San Luis. Ideal para cumpleaños, reuniones, talleres y celebraciones. Totalmente en planta baja para hasta 40 personas, con vajilla incluida, WiFi, cocina con horno y hornallas, freezer, baños, calefacción, parrilla, piscina y parlante JBL con Bluetooth.',
   location: {
     neighborhood: 'B° Aires de San Benito',
     city: 'La Punta',
@@ -65,77 +65,77 @@ export interface Amenity {
 export const AMENITIES: Amenity[] = [
   {
     id: 'salon',
-    title: 'Salón Climatizado',
-    subtitle: 'Confort en cualquier época del año',
+    title: 'Salón Cómodo y Equipado',
+    subtitle: 'Mesas y sillas para 40 personas',
     description:
-      'Amplio salón cerrado con aire acondicionado frío/calor, mesas amplias y sillas confortables para hasta 40 comensales.',
-    icon: 'Snowflake',
+      'Espacio cómodo y totalmente equipado en planta baja, con mesas y sillas para 40 comensales, calefacción y excelente iluminación.',
+    icon: 'Users',
     image: '/images/salon_interior_banquet.jpg',
     highlight: true,
   },
   {
     id: 'pool',
-    title: 'Piscina con Solárium',
-    subtitle: 'Vistas a las sierras puntanas',
+    title: 'Piscina para Disfrutar',
+    subtitle: 'Un buen rato bajo el agua',
     description:
-      'Piscina cercada y mantenida con solárium atérmico, sombrillas y entorno verde para disfrutar del sol y los días de verano.',
+      'Piscina en entorno verde para pasar un buen rato bajo el agua, refrescarse y disfrutar en familia o con amigos.',
     icon: 'Waves',
     image: '/images/pool_mountains.jpg',
     highlight: true,
   },
   {
     id: 'grill',
-    title: 'Churrasquera Tradicional',
-    subtitle: 'El corazón de todo buen asado',
+    title: 'Parrilla para Asados',
+    subtitle: 'El punto de encuentro',
     description:
-      'Parrilla de ladrillos de gran porte con chimenea, iluminación nocturna propia, mesada contigua y espacio para leña o carbón.',
+      'Parrilla cómoda para preparar tus asados, en un espacio muy bien iluminado tanto de día como de noche.',
     icon: 'Flame',
     image: '/images/parrilla_churrasquera.jpg',
     highlight: true,
   },
   {
     id: 'kitchen',
-    title: 'Cocina con Anafe Industrial',
-    subtitle: 'Equipada para cocinar y refrigerar',
+    title: 'Cocina con Horno y Hornallas',
+    subtitle: 'Equipada con freezer',
     description:
-      'Mesadas de granito, anafe industrial de alta potencia, heladera con freezer para bebidas y alimentos, y piletas de lavado.',
+      'Cocina con horno y hornallas, además de freezer para mantener frías bebidas y alimentos, con mesada cómoda para organizar tu comida.',
     icon: 'UtensilsCrossed',
     image: '/images/kitchen_dining.jpg',
   },
   {
     id: 'tableware',
     title: 'Vajilla Completa Incluida',
-    subtitle: 'Sin cargos sorpresa de alquiler',
+    subtitle: 'Para 40 personas sin cargo extra',
     description:
-      'Platos, cubiertos de acero inoxidable, vasos y accesorios incluidos en tu reserva. Llegás y festejás sin preocuparte.',
+      'Platos, cubiertos y vasos para 40 personas incluidos en tu alquiler. Llegás y festejás sin preocuparte por alquilar ni lavar.',
     icon: 'CheckCircle2',
     image: '/images/salon_panoramic.jpg',
     highlight: true,
   },
   {
     id: 'sound',
-    title: 'Sonido JBL PartyBox',
-    subtitle: 'Música y ambientación rítmica',
+    title: 'Parlante JBL con Bluetooth',
+    subtitle: 'Poné la música que desees',
     description:
-      'Torre de sonido JBL PartyBox con conexión Bluetooth de alta fidelidad y juego de luces LED integradas para animar tu fiesta.',
+      'Parlante JBL con acceso a Bluetooth para conectar tu celular fácilmente y poner la música que quieras durante todo el evento.',
     icon: 'Speaker',
     image: '/images/sound_jbl_party.jpg',
   },
   {
     id: 'heater',
-    title: 'Calefacción Exterior Daewoo',
-    subtitle: 'Noches frescas bajo las estrellas',
+    title: 'Calefacción & Baños',
+    subtitle: 'Confort en cualquier época',
     description:
-      'Estufa exterior piramidal de diseño para disfrutar del parque y la terraza al aire libre aún en noches de otoño y primavera.',
+      'Salón con calefacción para disfrutar con temperatura agradable todo el año, además de baños completos y limpios.',
     icon: 'ThermometerSun',
     image: '/images/sunset_terrace.jpg',
   },
   {
     id: 'parking',
-    title: 'Estacionamiento Privado',
-    subtitle: 'Seguridad y tranquilidad absoluta',
+    title: 'Bien Iluminado & WiFi',
+    subtitle: 'Todo en planta baja (sin terraza)',
     description:
-      'Predio cerrado con portón de acceso para resguardar los vehículos de tus invitados dentro del lugar durante todo el evento.',
+      'Espacio bien iluminado tanto adentro como afuera, con conexión WiFi en todo el predio, estacionamiento cerrado y 100% en planta baja sin desniveles.',
     icon: 'ShieldCheck',
     image: '/images/pool_tree_window.jpg',
   },
@@ -150,23 +150,23 @@ export interface QuickHighlight {
 export const QUICK_HIGHLIGHTS: QuickHighlight[] = [
   {
     title: 'Vajilla Incluida',
-    description: 'Vajilla completa para hasta 40 comensales sin costo adicional.',
+    description: 'Vajilla completa para 40 personas sin costo adicional.',
     icon: 'Utensils',
   },
   {
-    title: 'Climatizado 100%',
-    description: 'Aire acondicionado frío/calor para disfrutar en cualquier estación.',
-    icon: 'Wind',
+    title: 'Cocina & Freezer',
+    description: 'Cocina con horno y hornallas, más freezer para alimentos y bebidas.',
+    icon: 'UtensilsCrossed',
   },
   {
-    title: 'Sonido JBL & Luces',
-    description: 'Parlante de alta gama con Bluetooth listo para tu playlist.',
+    title: 'Parlante JBL Bluetooth',
+    description: 'Conectá tu música preferida vía Bluetooth de forma simple y rápida.',
     icon: 'Volume2',
   },
   {
-    title: 'Estacionamiento Propio',
-    description: 'Tus vehículos protegidos dentro de nuestro predio cerrado.',
-    icon: 'Car',
+    title: 'Planta Baja & WiFi',
+    description: 'Todo en planta baja, bien iluminado adentro y afuera con WiFi.',
+    icon: 'CheckCircle2',
   },
 ];
 
@@ -183,92 +183,92 @@ export interface GalleryPhoto {
 export const GALLERY_PHOTOS: GalleryPhoto[] = [
   {
     id: 'sunset-terrace',
-    title: 'Atardecer en la Terraza',
+    title: 'Atardecer en el Predio',
     category: 'sunset',
-    categoryLabel: 'Terraza & Vistas',
+    categoryLabel: 'Parque & Atardecer',
     src: '/images/sunset_terrace.jpg',
-    description: 'Vistas panorámicas inolvidables hacia las sierras con cálida iluminación crepuscular.',
+    description: 'Vistas panorámicas hacia las sierras con el espacio iluminado al caer la tarde.',
     aspect: 'landscape',
   },
   {
     id: 'pool-mountains',
-    title: 'Piscina & Sierras',
+    title: 'Piscina & Vistas Serranas',
     category: 'pool',
     categoryLabel: 'Piscina',
     src: '/images/pool_mountains.jpg',
-    description: 'Piscina con amplio solárium y postal directa a la cordillera puntana.',
+    description: 'Piscina para pasar un buen rato bajo el agua con el marco de las sierras de San Luis.',
     aspect: 'landscape',
   },
   {
     id: 'salon-banquet',
-    title: 'Salón Principal para Eventos',
+    title: 'Salón Cómodo para 40 Personas',
     category: 'salon',
     categoryLabel: 'Salón',
     src: '/images/salon_interior_banquet.jpg',
-    description: 'Espacio cerrado, cómodo y climatizado con vajilla completa y ambientación cuidada.',
+    description: 'Espacio cerrado en planta baja con mesas, sillas y vajilla completa para 40 personas.',
     aspect: 'landscape',
   },
   {
     id: 'parrilla-churrasquera',
-    title: 'Gran Churrasquera Pura Leña',
+    title: 'Parrilla Amplia e Iluminada',
     category: 'grill',
     categoryLabel: 'Parrilla',
     src: '/images/parrilla_churrasquera.jpg',
-    description: 'Sector de fuego espacioso de ladrillo refractario con iluminación nocturna directa.',
+    description: 'Parrilla cómoda con iluminación para disfrutar de los mejores asados.',
     aspect: 'landscape',
   },
   {
     id: 'kitchen-dining',
-    title: 'Cocina Equipada & Anafe',
+    title: 'Cocina con Horno y Hornallas',
     category: 'salon',
     categoryLabel: 'Salón',
     src: '/images/kitchen_dining.jpg',
-    description: 'Mesadas de granito, anafe industrial y heladera con freezer para organizar tu evento.',
+    description: 'Cocina con horno, hornallas y freezer para mantener todo fresco y listo.',
     aspect: 'landscape',
   },
   {
     id: 'pool-closeup',
-    title: 'Agua Cristalina & Solárium',
+    title: 'Piscina y Espacio al Aire Libre',
     category: 'pool',
     categoryLabel: 'Piscina',
     src: '/images/pool_closeup.jpg',
-    description: 'Mantenimiento impecable del agua para que chicos y grandes disfruten con total seguridad.',
+    description: 'Agua cuidada y limpia para disfrutar bajo el sol en familia o con amigos.',
     aspect: 'landscape',
   },
   {
     id: 'sound-party',
-    title: 'Sonido JBL PartyBox',
+    title: 'Parlante JBL con Bluetooth',
     category: 'grill',
-    categoryLabel: 'Ambiente',
+    categoryLabel: 'Música',
     src: '/images/sound_jbl_party.jpg',
-    description: 'Potencia acústica profesional y luces sincronizadas listas para conectar tu smartphone.',
+    description: 'Parlante JBL con acceso Bluetooth para ambientar tu festejo con la música que quieras.',
     aspect: 'landscape',
   },
   {
     id: 'salon-panoramic',
-    title: 'Vista Panorámica del Salón',
+    title: 'Salón Iluminado y Confortable',
     category: 'salon',
     categoryLabel: 'Salón',
     src: '/images/salon_panoramic.jpg',
-    description: 'Distribución versátil para mesas familiares, tandas de baile o presentaciones.',
+    description: 'Excelente iluminación natural y artificial, calefacción y vajilla incluida.',
     aspect: 'landscape',
   },
   {
     id: 'pool-tree-window',
-    title: 'Parque Verde & Piscina',
+    title: 'Parque Verde en Planta Baja',
     category: 'pool',
     categoryLabel: 'Piscina',
     src: '/images/pool_tree_window.jpg',
-    description: 'Espacios verdes parquizados con vegetación y sombra para relajarse en familia.',
+    description: 'Todo el predio desarrollado en planta baja, seguro y cómodo.',
     aspect: 'landscape',
   },
   {
     id: 'promo-card',
-    title: 'Tu Momento Especial',
+    title: 'El Lugar para tu Evento',
     category: 'sunset',
     categoryLabel: 'Celebraciones',
     src: '/images/promo_card.jpg',
-    description: 'El entorno diseñado para crear recuerdos únicos con amigos y seres queridos.',
+    description: 'Cumpleaños, reuniones, talleres y celebraciones inolvidables en Quincho Raíces.',
     aspect: 'landscape',
   },
 ];
@@ -286,43 +286,43 @@ export interface EventType {
 export const EVENT_TYPES: EventType[] = [
   {
     id: 'cumples',
-    title: 'Cumpleaños & Festejos',
-    tagline: 'Tanto infantiles como de adultos',
+    title: 'Cumpleaños',
+    tagline: 'Infantiles y de adultos',
     description:
-      'El ambiente perfecto para soplar las velitas, divertirse en el parque y la pileta, y bailar con la mejor música.',
-    benefits: ['Vajilla incluida para no lavar', 'Música JBL con luces', 'Espacio para inflables o juegos'],
+      'El lugar ideal para festejar con seres queridos: salón cómodo para 40 personas, vajilla incluida, piscina para divertirse y parlante JBL.',
+    benefits: ['Vajilla incluida para 40 personas', 'Parlante JBL con Bluetooth', 'Piscina para disfrutar bajo el agua'],
     recommendedShifts: 'Día Completo o Tarde/Noche',
     icon: 'PartyPopper',
   },
   {
-    id: 'asados',
-    title: 'Asados Familiares & Domingos',
-    tagline: 'La tradición de compartir un buen asado',
+    id: 'reuniones',
+    title: 'Reuniones Familiares & Amigos',
+    tagline: 'Compartir un buen asado y relax',
     description:
-      'Churrasquera amplia con excelente tiraje, mesas grandes para toda la familia y una piscina hermosa para la sobremesa.',
-    benefits: ['Gran parrilla iluminada', 'Heladera y freezer para bebidas', 'Comodidad para hasta 40 personas'],
+      'Parrilla amplia, mesas y sillas para 40 personas, cocina con horno y hornallas, freezer y piscina para pasar el día.',
+    benefits: ['Parrilla bien iluminada', 'Cocina con horno y freezer', 'Mesas y sillas para 40 personas'],
     recommendedShifts: 'Turno Día (11:00 a 19:00)',
     icon: 'Beef',
   },
   {
-    id: 'fiestas-noche',
-    title: 'Fiestas Nocturnas & Despedidas',
-    tagline: 'Luces, piscina iluminada y música',
+    id: 'talleres',
+    title: 'Talleres & Capacitaciones',
+    tagline: 'Espacio cómodo, iluminado y con WiFi',
     description:
-      'Celebrá logros, aniversarios o despedidas de fin de año en un entorno íntimo, privado y sin interrupciones.',
-    benefits: ['Iluminación ambiental exterior', 'Calefacción exterior piramidal', 'Estacionamiento interno seguro'],
-    recommendedShifts: 'Turno Noche (20:00 a 04:00)',
-    icon: 'MoonStar',
+      'Ideal para dictar talleres, cursos o capacitaciones en un espacio confortable, cerrado, con calefacción y WiFi en planta baja.',
+    benefits: ['Conexión WiFi en todo el predio', 'Salón en planta baja bien iluminado', 'Calefacción y baños cómodos'],
+    recommendedShifts: 'Turno Mañana, Tarde o Día Completo',
+    icon: 'Briefcase',
   },
   {
-    id: 'corporativos',
-    title: 'Jornadas & Talleres',
-    tagline: 'Team building y reuniones de trabajo',
+    id: 'celebraciones',
+    title: 'Celebraciones & Fiestas',
+    tagline: 'Todo equipado para tu evento',
     description:
-      'Desconectá de la oficina en un entorno natural al pie de las sierras, ideal para capacitaciones y días de integración.',
-    benefits: ['Conexión WiFi en todo el predio', 'Salón climatizado y silencioso', 'Ambiente relajado y privado'],
-    recommendedShifts: 'Medio Día o Día Completo',
-    icon: 'Briefcase',
+      'Espacio bien iluminado tanto dentro como afuera, con calefacción, sonido JBL y la tranquilidad de tener todo en un mismo nivel.',
+    benefits: ['Iluminación interior y exterior', 'Calefacción en el salón', 'Totalmente en planta baja'],
+    recommendedShifts: 'Turno Noche o Día Completo',
+    icon: 'MoonStar',
   },
 ];
 
@@ -335,12 +335,22 @@ export const FAQS: FAQItem[] = [
   {
     question: '¿Qué incluye el alquiler de Quincho Raíces?',
     answer:
-      'El alquiler incluye el uso exclusivo del predio durante el turno contratado: salón cerrado climatizado (frío/calor), mesas y sillas para hasta 40 personas, vajilla completa (platos, cubiertos y vasos), cocina equipada con anafe industrial y heladera con freezer, gran churrasquera con luz, piscina con solárium, torre de sonido JBL PartyBox con Bluetooth, estufa exterior Daewoo y estacionamiento cerrado dentro del predio.',
+      'El alquiler incluye el uso exclusivo del predio durante el turno contratado: salón cerrado y cómodo en planta baja con mesas y sillas para 40 personas, vajilla completa incluida, cocina con horno y hornallas, freezer, baños y calefacción. En el exterior cuenta con parrilla, piscina para pasar un buen rato bajo el agua, excelente iluminación tanto dentro como afuera, WiFi en todo el predio y parlante JBL con Bluetooth para que pongas la música que desees.',
+  },
+  {
+    question: '¿Para qué tipo de eventos es ideal el salón?',
+    answer:
+      'Es ideal para cumpleaños, reuniones familiares y de amigos, talleres, celebraciones y festejos de todo tipo, con capacidad cómoda de hasta 40 personas.',
   },
   {
     question: '¿Hay algún costo adicional por la vajilla?',
     answer:
-      '¡No! La vajilla completa está incluida en la tarifa sin costo extra. Queremos que tu experiencia sea transparente y sin sorpresas.',
+      '¡No! La vajilla completa (platos, cubiertos y vasos para 40 personas) está incluida en la tarifa sin costo extra.',
+  },
+  {
+    question: '¿El espacio cuenta con terraza o escaleras?',
+    answer:
+      'No cuenta con terraza: todo el predio está desarrollado en planta baja, sin escaleras ni desniveles, lo que brinda máxima comodidad y accesibilidad para todos los invitados.',
   },
   {
     question: '¿Cómo se reserva la fecha y cuáles son los medios de pago?',
@@ -350,7 +360,7 @@ export const FAQS: FAQItem[] = [
   {
     question: '¿Qué turnos y horarios manejan?',
     answer:
-      'Manejamos turnos de Día Completo, Turno Tarde/Día (ideal almuerzos y pileta) y Turno Noche (para cenas y fiestas). Los horarios específicos se pueden coordinar según el tipo de evento y la temporada del año.',
+      'Manejamos turnos de Día Completo, Turno Tarde/Día y Turno Noche. Los horarios específicos se pueden coordinar según el tipo de evento y la temporada del año.',
   },
   {
     question: '¿El quincho cuenta con estacionamiento?',
@@ -358,14 +368,9 @@ export const FAQS: FAQItem[] = [
       'Sí, contamos con estacionamiento privado y cerrado dentro del predio para que vos y tus invitados dejen sus vehículos con total seguridad y comodidad.',
   },
   {
-    question: '¿Dónde está ubicado y cómo llegar?',
+    question: '¿Dónde está ubicado y se puede visitar antes de reservar?',
     answer:
-      'Estamos ubicados en el Barrio Aires de San Benito, en la ciudad de La Punta, San Luis. Es una zona tranquila, segura y de fácil acceso vehicular, con imponentes vistas hacia las sierras. Te enviamos la ubicación exacta por WhatsApp al coordinar tu visita.',
-  },
-  {
-    question: '¿Se puede visitar el lugar antes de reservar?',
-    answer:
-      '¡Por supuesto! Podés coordinar una visita previa con nosotros por WhatsApp para conocer las instalaciones, ver el salón, la pileta y planificar mejor tu fiesta.',
+      'Estamos ubicados en el Barrio Aires de San Benito, La Punta, San Luis. Es una zona tranquila, segura y de fácil acceso vehicular, con imponentes vistas hacia las sierras. Podés coordinar una visita previa por WhatsApp para conocer las instalaciones personalmente.',
   },
 ];
 
