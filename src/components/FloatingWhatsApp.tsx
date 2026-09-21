@@ -69,9 +69,9 @@ export const FloatingWhatsApp: React.FC = () => {
             
             {/* Phone Selector */}
             <div>
-              <label className="block text-xs font-bold text-stone-700 mb-1.5">
+              <span className="block text-xs font-bold text-stone-700 mb-1.5">
                 Elegí la línea de atención:
-              </label>
+              </span>
               <div className="grid grid-cols-2 gap-2">
                 {CONTACT_LINES.map((line) => {
                   const isSelected = selectedPhoneRaw === line.phoneRaw;
@@ -118,10 +118,11 @@ export const FloatingWhatsApp: React.FC = () => {
 
             {/* Textarea */}
             <div>
-              <label className="block text-xs font-bold text-stone-700 mb-1">
+              <label htmlFor="whatsapp-custom-message" className="block text-xs font-bold text-stone-700 mb-1">
                 Tu mensaje:
               </label>
               <textarea
+                id="whatsapp-custom-message"
                 rows={3}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}

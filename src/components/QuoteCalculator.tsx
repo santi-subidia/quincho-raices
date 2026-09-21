@@ -139,10 +139,10 @@ Quisiera consultar disponibilidad y cotización para mi evento:
 
               {/* 2. Cantidad de Personas */}
               <div>
-                <label className="text-sm font-semibold text-stone-200 mb-2 flex items-center gap-2" id="guests-group-label">
+                <div className="text-sm font-semibold text-stone-200 mb-2 flex items-center gap-2" id="guests-group-label">
                   <Users className="w-4 h-4 text-emerald-400" />
                   <span>2. Cantidad estimada de invitados</span>
-                </label>
+                </div>
                 <div role="radiogroup" aria-labelledby="guests-group-label" className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {GUEST_OPTIONS.map((opt) => {
                     const isSelected = guests === opt;
@@ -206,10 +206,10 @@ Quisiera consultar disponibilidad y cotización para mi evento:
 
               {/* 5. Selector de Línea de Contacto */}
               <div>
-                <label className="text-sm font-semibold text-stone-200 mb-2 flex items-center gap-2" id="line-group-label">
+                <div className="text-sm font-semibold text-stone-200 mb-2 flex items-center gap-2" id="line-group-label">
                   <PhoneCall className="w-4 h-4 text-emerald-400" />
                   <span>5. Línea de WhatsApp para contactar</span>
-                </label>
+                </div>
                 <div role="radiogroup" aria-labelledby="line-group-label" className="grid grid-cols-2 gap-3">
                   {CONTACT_LINES.map((line) => {
                     const isSelected = selectedLineId === line.id;
