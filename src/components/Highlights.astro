@@ -37,27 +37,27 @@ const HIGHLIGHT_CARDS = [
 ];
 ---
 
-<section class="py-12 bg-white border-b border-stone-200 relative">
+<section class="py-12 bg-[#080a09] border-b border-emerald-950/40 relative">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {HIGHLIGHT_CARDS.map((card) => {
         const IconComponent = card.icon;
         return (
           <div
-            class={`reveal-item ${card.delay} spotlight-card relative p-6 rounded-2xl bg-stone-50/90 border border-stone-200/80 shadow-xs hover:shadow-lg hover:border-emerald-400/80 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col group cursor-default`}
+            class={`reveal-item ${card.delay} spotlight-card spotlight-card-dark relative p-6 rounded-2xl bg-[#0d1310]/85 backdrop-blur-xl border border-emerald-900/30 shadow-[0_10px_35px_rgba(0,0,0,0.6)] hover:shadow-xl hover:border-emerald-500/50 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col group cursor-default`}
           >
             <div class="flex items-center justify-between mb-4">
               <div class={`p-3 rounded-xl border ${card.color} group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 shadow-xs`}>
                 <IconComponent className="w-6 h-6" />
               </div>
-              <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-stone-200/70 text-stone-700 group-hover:bg-emerald-100 group-hover:text-emerald-800 transition-colors">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-950/80 text-emerald-300 border border-emerald-800/40 group-hover:border-emerald-500/50 transition-colors">
                 {card.badge}
               </span>
             </div>
-            <h3 class="text-lg font-bold text-stone-900 mb-2 group-hover:text-emerald-800 transition-colors">
+            <h3 class="text-lg font-serif font-bold text-stone-100 mb-2 group-hover:text-emerald-300 transition-colors">
               {card.title}
             </h3>
-            <p class="text-sm text-stone-600 leading-relaxed">
+            <p class="text-sm text-stone-300 leading-relaxed">
               {card.description}
             </p>
           </div>

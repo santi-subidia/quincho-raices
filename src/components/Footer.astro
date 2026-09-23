@@ -3,18 +3,22 @@ import { Image } from 'astro:assets';
 import { QUINCHO_INFO, CONTACT_LINES, buildWhatsAppLink } from '../data/quincho';
 import { Phone, MapPin, Heart } from 'lucide-react';
 import MountainSilhouette from './MountainSilhouette.astro';
+import TreeEmblemWatermark from './TreeEmblemWatermark.astro';
 import logoImg from '../assets/images/logo_profile.jpg';
 
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-stone-950 text-stone-300 relative">
+<footer class="bg-[#050706] text-stone-300 relative border-t border-emerald-950/30 overflow-hidden">
   <!-- Mountain Silhouette Transition from FAQ into Footer -->
-  <div class="relative w-full bg-white leading-none">
-    <MountainSilhouette variant="night" fillColor="#0c0a09" />
+  <div class="relative w-full bg-[#080a09] leading-none pointer-events-none">
+    <MountainSilhouette variant="night" fillColor="#050706" />
   </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  <!-- Background Botanical Watermark -->
+  <TreeEmblemWatermark className="bottom-0 right-4 w-[500px] h-[500px]" opacity={0.03} strokeColor="#34d399" />
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
       
       <!-- Brand & Description (5 cols) -->
@@ -23,13 +27,13 @@ const currentYear = new Date().getFullYear();
           <Image
             src={logoImg}
             alt="Logo Quincho Raíces"
-            class="w-12 h-12 rounded-full object-cover border-2 border-emerald-500 shadow-md shadow-emerald-950/40"
+            class="w-12 h-12 rounded-full object-cover border-2 border-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.35)]"
             width={48}
             height={48}
             loading="lazy"
           />
           <div>
-            <span class="font-serif text-2xl font-bold tracking-tight text-white block">
+            <span class="font-serif text-2xl font-bold tracking-tight text-stone-100 block">
               {QUINCHO_INFO.name}
             </span>
             <span class="text-xs font-semibold text-emerald-400">
@@ -38,7 +42,7 @@ const currentYear = new Date().getFullYear();
           </div>
         </div>
 
-        <p class="text-sm text-stone-400 max-w-md leading-relaxed">
+        <p class="text-sm text-stone-300 max-w-md leading-relaxed">
           {QUINCHO_INFO.description}
         </p>
 
@@ -48,7 +52,7 @@ const currentYear = new Date().getFullYear();
             href={QUINCHO_INFO.social.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-stone-200 text-sm font-semibold transition-colors group"
+            class="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-[#0b100d] hover:bg-[#121914] border border-emerald-950/80 hover:border-pink-500/40 text-stone-200 text-sm font-semibold transition-all group"
           >
             <svg class="w-4 h-4 text-pink-400 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
@@ -62,11 +66,11 @@ const currentYear = new Date().getFullYear();
 
       <!-- Quick Links (3 cols) -->
       <div class="lg:col-span-3 space-y-3">
-        <h4 class="text-sm font-bold uppercase tracking-wider text-white">Navegación</h4>
+        <h4 class="text-sm font-serif font-bold uppercase tracking-wider text-stone-100">Navegación</h4>
         <ul class="space-y-2 text-sm">
           <li>
             <a href="#amenities" class="text-stone-400 hover:text-emerald-400 transition-colors">
-              Instalaciones & Comodidades
+              Lo que ofrecemos
             </a>
           </li>
           <li>
@@ -77,11 +81,6 @@ const currentYear = new Date().getFullYear();
           <li>
             <a href="#eventos" class="text-stone-400 hover:text-emerald-400 transition-colors">
               Tipos de Festejo
-            </a>
-          </li>
-          <li>
-            <a href="#cotizador" class="text-stone-400 hover:text-emerald-400 transition-colors">
-              Cotizador Online
             </a>
           </li>
           <li>
@@ -99,7 +98,7 @@ const currentYear = new Date().getFullYear();
 
       <!-- Contact Lines (4 cols) -->
       <div class="lg:col-span-4 space-y-3">
-        <h4 class="text-sm font-bold uppercase tracking-wider text-white">Líneas de Atención</h4>
+        <h4 class="text-sm font-serif font-bold uppercase tracking-wider text-stone-100">Líneas de Atención</h4>
         <div class="space-y-3">
           {CONTACT_LINES.map((line) => {
             const url = buildWhatsAppLink(
@@ -111,14 +110,14 @@ const currentYear = new Date().getFullYear();
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex items-center gap-3 p-3 rounded-2xl bg-stone-900 border border-stone-800 hover:border-emerald-500/50 transition-colors group"
+                class="flex items-center gap-3 p-3 rounded-2xl bg-[#0b100d] border border-emerald-950/80 hover:border-emerald-500/50 transition-colors group"
               >
-                <div class="p-2 rounded-xl bg-emerald-950 text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                <div class="p-2 rounded-xl bg-emerald-950 text-emerald-400 border border-emerald-900/50 group-hover:bg-emerald-700 group-hover:text-white transition-colors">
                   <Phone className="w-4 h-4" />
                 </div>
                 <div>
-                  <p class="text-xs font-bold text-stone-300">{line.name}</p>
-                  <p class="text-sm font-mono font-semibold text-white group-hover:text-emerald-400 transition-colors">
+                  <p class="text-xs font-serif font-bold text-stone-300 group-hover:text-emerald-300 transition-colors">{line.title}</p>
+                  <p class="text-sm font-mono font-semibold text-emerald-400 group-hover:text-emerald-300 transition-colors">
                     {line.phoneFormatted}
                   </p>
                 </div>
@@ -136,11 +135,11 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <!-- Bottom Bar -->
-    <div class="mt-12 pt-8 border-t border-stone-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 gap-4">
+    <div class="mt-12 pt-8 border-t border-emerald-950/60 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-400 gap-4">
       <p>&copy; {currentYear} {QUINCHO_INFO.name}. Todos los derechos reservados.</p>
       <p class="flex items-center gap-1">
         <span>Diseñado con</span>
-        <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
+        <Heart className="w-3.5 h-3.5 text-emerald-500 fill-emerald-500" />
         <span>para celebrar tus mejores momentos en San Luis</span>
       </p>
     </div>

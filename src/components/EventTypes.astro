@@ -1,90 +1,125 @@
 ---
 import { EVENT_TYPES, CONTACT_LINES, buildWhatsAppLink } from '../data/quincho';
-import { PartyPopper, Beef, MoonStar, Briefcase, Check, ArrowRight } from 'lucide-react';
+import TreeEmblemWatermark from './TreeEmblemWatermark.astro';
+import { PartyPopper, Beef, MoonStar, Briefcase, Heart, MessageCircle, Sparkles } from 'lucide-react';
 
 const iconMap: Record<string, any> = {
   PartyPopper,
   Beef,
   MoonStar,
   Briefcase,
+  Heart,
 };
 
-const defaultPhone = CONTACT_LINES[0];
+const [lineRocio, lineMatias] = CONTACT_LINES;
 ---
 
-<section id="eventos" class="py-20 bg-stone-100/70 border-t border-b border-stone-200/80 relative">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="eventos" class="py-20 sm:py-28 bg-[#080a09] relative overflow-hidden">
+  <!-- Botanical Tree Watermark Background -->
+  <TreeEmblemWatermark className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px]" opacity={0.035} strokeColor="#34d399" />
+
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
     
-    <!-- Section Header -->
-    <div class="reveal-item text-center max-w-3xl mx-auto mb-16">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold tracking-wide uppercase mb-3 shadow-2xs">
-        Celebraciones & Momentos
+    <!-- Section Header (Minimal & Natural) -->
+    <div class="reveal-item text-center max-w-xl mx-auto mb-12 sm:mb-16">
+      <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-950/80 text-emerald-300 text-xs font-bold tracking-wide uppercase mb-3 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+        <Sparkles className="w-3 h-3 text-emerald-400" />
+        <span>Celebraciones & Festejos</span>
       </div>
-      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight mb-4">
-        ¿Qué tipo de festejo estás planeando?
+      <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-stone-100 tracking-tight mb-3">
+        ¿Para qué es ideal?
       </h2>
-      <p class="text-base sm:text-lg text-stone-600">
-        Adaptamos nuestro espacio para que vos solo te ocupes de disfrutar junto a tus invitados.
+      <p class="text-xs sm:text-sm text-stone-300 leading-relaxed">
+        Cada festejo es único. Conocé cómo se adapta nuestro espacio exclusivo y consultanos directamente.
       </p>
     </div>
 
-    <!-- Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+    <!-- Sticky Stacking Solapas (Luxury Dark Invitation Cards) -->
+    <div class="relative space-y-0 pb-12">
       {EVENT_TYPES.map((eventType, index) => {
         const IconComponent = iconMap[eventType.icon] || PartyPopper;
-        const eventWhatsAppUrl = buildWhatsAppLink(
-          defaultPhone.phoneRaw,
-          `¡Hola! Quisiera consultar disponibilidad y presupuesto para festejar un evento de tipo: ${eventType.title}.`
+        
+        const rocioUrl = buildWhatsAppLink(
+          lineRocio.phoneRaw,
+          `¡Hola Rocío! Quisiera consultar disponibilidad para celebrar: ${eventType.title} en Quincho Raíces.`
         );
-        const delayClass = index === 0 ? '' : index === 1 ? 'reveal-delay-100' : index === 2 ? 'reveal-delay-200' : 'reveal-delay-300';
+        const matiasUrl = buildWhatsAppLink(
+          lineMatias.phoneRaw,
+          `¡Hola Matías! Quisiera consultar disponibilidad para celebrar: ${eventType.title} en Quincho Raíces.`
+        );
+
+        // Generous top clearance so it never crowds the navbar, plus clear steps
+        const mobileOffset = 6.25 + index * 2.25; // rem (100px base + 36px step)
+        const desktopOffset = 6.5 + index * 2.75; // rem (104px base + 44px step)
+        const zIndex = 10 + index;
+        const isNotLast = index < EVENT_TYPES.length - 1;
 
         return (
-          <div class={`reveal-item ${delayClass} spotlight-card flex flex-col bg-white rounded-3xl p-7 border border-stone-200/80 shadow-xs hover:shadow-xl hover:border-emerald-400/80 hover:-translate-y-1.5 transition-all duration-300 group cursor-default`}>
-            
-            <!-- Icon & Header -->
-            <div class="p-3 rounded-2xl bg-emerald-50 text-emerald-700 border border-emerald-100 w-fit mb-5 group-hover:bg-emerald-600 group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-2xs">
-              <IconComponent className="w-6 h-6" />
-            </div>
-
-            <h3 class="text-xl font-bold text-stone-900 mb-1 group-hover:text-emerald-800 transition-colors">
-              {eventType.title}
-            </h3>
-            
-            <p class="text-xs font-semibold text-emerald-700 mb-4">
-              {eventType.tagline}
-            </p>
-
-            <p class="text-sm text-stone-600 mb-6 leading-relaxed flex-1">
-              {eventType.description}
-            </p>
-
-            <!-- Benefits List -->
-            <div class="space-y-2 mb-6 pt-4 border-t border-stone-100">
-              {eventType.benefits.map((b) => (
-                <div class="flex items-center gap-2 text-xs font-medium text-stone-700">
-                  <Check className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                  <span>{b}</span>
+          <div
+            style={`--m-top: ${mobileOffset}rem; --d-top: ${desktopOffset}rem; z-index: ${zIndex};`}
+            class={`sticky top-[var(--m-top)] sm:top-[var(--d-top)] transition-all duration-200 ${
+              isNotLast ? 'mb-24 sm:mb-32' : 'mb-6'
+            }`}
+          >
+            <!-- Card Shell: Dark glass with fine metallic jewel border -->
+            <div class={`bg-[#0d1310]/95 backdrop-blur-xl rounded-2xl border ${eventType.accent.border} shadow-[0_10px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_15px_45px_rgba(0,0,0,0.9)] overflow-hidden transition-all duration-300`}>
+              
+              <!-- Tab / Solapa Bar: Tinted dark metal background -->
+              <div class={`flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3.5 ${eventType.accent.tabBg} border-b transition-colors`}>
+                <div class="flex items-center gap-2.5">
+                  <span class={`inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-mono font-bold ${eventType.accent.tabNumber}`}>
+                    {eventType.number}
+                  </span>
+                  <span class="font-serif text-sm sm:text-base font-bold text-stone-100">
+                    {eventType.tabTitle}
+                  </span>
                 </div>
-              ))}
+                <div class="flex items-center gap-2">
+                  <span class="text-[11px] text-stone-400 font-medium hidden sm:inline">{eventType.tagline}</span>
+                  <IconComponent className={`w-4 h-4 ${eventType.accent.iconColor}`} />
+                </div>
+              </div>
+
+              <!-- Card Content: Editorial Dark Luxury -->
+              <div class="p-4 sm:p-6 space-y-3.5 bg-[#0b100d]/90">
+                <h3 class="font-serif text-base sm:text-lg font-bold text-stone-100 leading-snug">
+                  {eventType.title}
+                </h3>
+
+                <p class="text-xs sm:text-sm text-stone-300 leading-relaxed font-normal">
+                  {eventType.idealFor}
+                </p>
+
+                <!-- WhatsApp Quick Action Buttons -->
+                <div class="pt-3 border-t border-emerald-950/60 flex items-center justify-between flex-wrap gap-2.5">
+                  <span class="text-[11px] font-medium text-stone-400">
+                    Consultar fecha por WhatsApp:
+                  </span>
+                  <div class="flex items-center gap-2">
+                    <a
+                      href={rocioUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="shimmer-sweep inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-semibold shadow-[0_0_12px_rgba(16,185,129,0.25)] transition-all"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5 text-emerald-200" />
+                      <span>Con Rocío</span>
+                    </a>
+                    <a
+                      href={matiasUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#141d18] hover:bg-emerald-950/80 text-stone-200 hover:text-white border border-emerald-900/60 hover:border-emerald-500/40 text-xs font-semibold shadow-2xs transition-colors"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>Con Matías</span>
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+
             </div>
-
-            <!-- Recommended Shift Badge -->
-            <div class="mb-6 p-2.5 rounded-xl bg-stone-50 border border-stone-200/60 text-xs text-stone-600 text-center group-hover:bg-emerald-50/50 group-hover:border-emerald-200/60 transition-colors">
-              <span class="font-bold text-stone-800">Horario sugerido:</span><br />
-              {eventType.recommendedShifts}
-            </div>
-
-            <!-- CTA with sliding arrow -->
-            <a
-              href={eventWhatsAppUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="shimmer-sweep inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-stone-100 hover:bg-emerald-600 text-stone-800 hover:text-white font-semibold text-xs tracking-wide transition-all duration-200 transform active:scale-98"
-            >
-              <span>Consultar este plan</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200" />
-            </a>
-
           </div>
         );
       })}

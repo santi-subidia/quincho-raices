@@ -1,0 +1,241 @@
+---
+interface Props {
+  className?: string;
+  opacity?: number;
+  strokeColor?: string;
+  glow?: boolean;
+}
+
+const {
+  className = '',
+  opacity = 0.06,
+  strokeColor = '#34d399',
+  glow = true,
+} = Astro.props;
+---
+
+<div
+  class={`absolute pointer-events-none select-none overflow-hidden flex items-center justify-center z-0 ${className}`}
+  style={{ opacity }}
+  aria-hidden="true"
+>
+  <svg
+    class="w-full h-full max-w-2xl max-h-[700px] overflow-visible"
+    viewBox="0 0 600 600"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      {glow && (
+        <filter id="tree-watermark-glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="4" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+      )}
+      <linearGradient id="tree-gold-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.8" />
+        <stop offset="40%" stop-color="#34d399" stop-opacity="0.9" />
+        <stop offset="100%" stop-color="#10b981" stop-opacity="0.6" />
+      </linearGradient>
+    </defs>
+
+    <!-- Outer Botanical Filigree Medallion Rings -->
+    <circle
+      cx="300"
+      cy="300"
+      r="280"
+      stroke={strokeColor}
+      stroke-width="1.2"
+      stroke-dasharray="10 8"
+    />
+    <circle
+      cx="300"
+      cy="300"
+      r="262"
+      stroke={strokeColor}
+      stroke-width="0.8"
+    />
+    <circle
+      cx="300"
+      cy="300"
+      r="244"
+      stroke={strokeColor}
+      stroke-width="1.5"
+    />
+
+    <!-- Medallion Cardinal Leaf Accents -->
+    <!-- Top Leaf Accent -->
+    <path
+      d="M300 18 C294 30, 290 44, 300 56 C310 44, 306 30, 300 18 Z"
+      fill={strokeColor}
+      opacity="0.7"
+    />
+    <!-- Bottom Leaf Accent -->
+    <path
+      d="M300 582 C294 570, 290 556, 300 544 C310 556, 306 570, 300 582 Z"
+      fill={strokeColor}
+      opacity="0.7"
+    />
+    <!-- Left Leaf Accent -->
+    <path
+      d="M18 300 C30 294, 44 290, 56 300 C44 310, 30 306, 18 300 Z"
+      fill={strokeColor}
+      opacity="0.7"
+    />
+    <!-- Right Leaf Accent -->
+    <path
+      d="M582 300 C570 294, 556 290, 544 300 C556 310, 570 306, 582 300 Z"
+      fill={strokeColor}
+      opacity="0.7"
+    />
+
+    <!-- Grand Majestic Tree Canopy -->
+    <!-- Center Central Folia Arch -->
+    <path
+      d="M300 95 
+         C240 95, 170 145, 165 210 
+         C160 270, 220 310, 275 320 
+         C260 300, 260 270, 280 250 
+         C285 240, 295 240, 300 240 
+         C305 240, 315 240, 320 250 
+         C340 270, 340 300, 325 320 
+         C380 310, 440 270, 435 210 
+         C430 145, 360 95, 300 95 Z"
+      stroke={strokeColor}
+      stroke-width="2"
+      fill="none"
+    />
+
+    <!-- Internal Canopy Filigree Branches -->
+    <path
+      d="M300 240 C300 180, 270 140, 230 130"
+      stroke={strokeColor}
+      stroke-width="1.8"
+      stroke-linecap="round"
+    />
+    <path
+      d="M300 240 C300 180, 330 140, 370 130"
+      stroke={strokeColor}
+      stroke-width="1.8"
+      stroke-linecap="round"
+    />
+    <path
+      d="M275 190 C240 185, 205 200, 185 225"
+      stroke={strokeColor}
+      stroke-width="1.6"
+      stroke-linecap="round"
+    />
+    <path
+      d="M325 190 C360 185, 395 200, 415 225"
+      stroke={strokeColor}
+      stroke-width="1.6"
+      stroke-linecap="round"
+    />
+    <path
+      d="M300 160 C290 135, 300 115, 300 100"
+      stroke={strokeColor}
+      stroke-width="1.8"
+      stroke-linecap="round"
+    />
+
+    <!-- Individual Stylized Leaves on Canopy -->
+    <path
+      d="M230 130 C220 118, 205 120, 200 130 C205 142, 220 140, 230 130 Z"
+      fill={strokeColor}
+      opacity="0.85"
+    />
+    <path
+      d="M370 130 C380 118, 395 120, 400 130 C395 142, 380 140, 370 130 Z"
+      fill={strokeColor}
+      opacity="0.85"
+    />
+    <path
+      d="M185 225 C172 220, 168 235, 175 245 C188 245, 192 232, 185 225 Z"
+      fill={strokeColor}
+      opacity="0.85"
+    />
+    <path
+      d="M415 225 C428 220, 432 235, 425 245 C412 245, 408 232, 415 225 Z"
+      fill={strokeColor}
+      opacity="0.85"
+    />
+    <path
+      d="M300 100 C292 88, 308 88, 300 78 C292 88, 300 95, 300 100 Z"
+      fill={strokeColor}
+      opacity="0.85"
+    />
+
+    <!-- Tree Trunk (Organic & Stately) -->
+    <path
+      d="M282 245 C284 275, 280 310, 276 345 C274 360, 268 375, 255 390 L345 390 C332 375, 326 360, 324 345 C320 310, 316 275, 318 245 Z"
+      stroke={strokeColor}
+      stroke-width="2.2"
+      fill="none"
+    />
+    <!-- Trunk Center Grain Core -->
+    <path
+      d="M300 250 L300 380"
+      stroke={strokeColor}
+      stroke-width="1.8"
+      stroke-dasharray="8 6"
+      stroke-linecap="round"
+    />
+
+    <!-- Deep Intertwining Root System -->
+    <!-- Primary Taproot & Main Descendants -->
+    <path
+      d="M300 385 C298 420, 302 465, 300 515"
+      stroke={strokeColor}
+      stroke-width="3"
+      stroke-linecap="round"
+    />
+    <!-- Deep Left Main Lateral Root -->
+    <path
+      d="M275 385 
+         C250 415, 215 440, 175 460 
+         C145 475, 115 480, 85 485"
+      stroke={strokeColor}
+      stroke-width="2.5"
+      stroke-linecap="round"
+    />
+    <!-- Deep Right Main Lateral Root -->
+    <path
+      d="M325 385 
+         C350 415, 385 440, 425 460 
+         C455 475, 485 480, 515 485"
+      stroke={strokeColor}
+      stroke-width="2.5"
+      stroke-linecap="round"
+    />
+    <!-- Secondary Intermediate Root 1 (Left) -->
+    <path
+      d="M285 405 C265 440, 240 475, 210 505 M250 435 C230 460, 200 480, 170 495"
+      stroke={strokeColor}
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+    <!-- Secondary Intermediate Root 2 (Right) -->
+    <path
+      d="M315 405 C335 440, 360 475, 390 505 M350 435 C370 460, 400 480, 430 495"
+      stroke={strokeColor}
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+    <!-- Deepest Subterranean Spreads -->
+    <path
+      d="M300 465 C285 490, 260 515, 240 535 M300 465 C315 490, 340 515, 360 535"
+      stroke={strokeColor}
+      stroke-width="1.8"
+      stroke-linecap="round"
+    />
+
+    <!-- Luminous Root Spores / Sap Drops -->
+    <circle cx="300" cy="520" r="3.5" fill={strokeColor} opacity="0.9" />
+    <circle cx="170" cy="495" r="3" fill={strokeColor} opacity="0.8" />
+    <circle cx="430" cy="495" r="3" fill={strokeColor} opacity="0.8" />
+    <circle cx="85" cy="485" r="2.5" fill={strokeColor} opacity="0.7" />
+    <circle cx="515" cy="485" r="2.5" fill={strokeColor} opacity="0.7" />
+    <circle cx="240" cy="535" r="2.5" fill={strokeColor} opacity="0.7" />
+    <circle cx="360" cy="535" r="2.5" fill={strokeColor} opacity="0.7" />
+  </svg>
+</div>

@@ -2,11 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
-import Highlights from '../components/Highlights.astro';
 import Amenities from '../components/Amenities.astro';
 import { Gallery } from '../components/Gallery';
-import EventTypes from '../components/EventTypes.astro';
-import { QuoteCalculator } from '../components/QuoteCalculator';
+import { EventShowcase } from '../components/EventShowcase';
 import Location from '../components/Location.astro';
 import FAQ from '../components/FAQ.astro';
 import Footer from '../components/Footer.astro';
@@ -17,24 +15,16 @@ import MountainSilhouette from '../components/MountainSilhouette.astro';
 
 <Layout>
   <Navbar />
-  <main class="relative overflow-hidden">
+  <main class="relative overflow-x-clip">
     <Hero />
-    <Highlights />
     <RootDivider className="my-2" />
     <Amenities />
     <Gallery client:visible />
-    <EventTypes />
+    <EventShowcase client:visible />
 
-    <!-- Mountain Silhouette Transition: Celebraciones -> Noche en Cotizador -->
-    <div class="relative w-full bg-stone-100/70 leading-none pointer-events-none -mb-1">
-      <MountainSilhouette variant="night" fillColor="#1c1917" />
-    </div>
-
-    <QuoteCalculator client:visible />
-
-    <!-- Mountain Silhouette Transition: Noche Cotizador -> Amanecer en Ubicación -->
-    <div class="relative w-full bg-stone-900 leading-none pointer-events-none -mb-1">
-      <MountainSilhouette variant="stone" fillColor="#fafaf9" />
+    <!-- Mountain Silhouette Transition: Celebraciones -> Ubicación en La Punta -->
+    <div class="relative w-full bg-[#080a09] leading-none pointer-events-none -mb-1">
+      <MountainSilhouette variant="stone" fillColor="#0c100e" />
     </div>
 
     <Location />

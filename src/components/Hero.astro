@@ -1,12 +1,23 @@
 ---
 import { Image } from 'astro:assets';
-import { MapPin, Calendar, Sparkles, Users, Utensils, ShieldCheck, ChevronDown } from 'lucide-react';
+import { ArrowDown, ChevronDown, MessageCircle } from 'lucide-react';
 import AmbientParticles from './AmbientParticles.astro';
 import MountainSilhouette from './MountainSilhouette.astro';
 import heroBg from '../assets/images/sunset_terrace.jpg';
+import { CONTACT_LINES, buildWhatsAppLink } from '../data/quincho';
+
+const [lineRocio, lineMatias] = CONTACT_LINES;
+const rocioWhatsApp = buildWhatsAppLink(
+  lineRocio.phoneRaw,
+  '¡Hola Rocío! Me comunico desde el sitio web de Quincho Raíces para consultar por disponibilidad de fechas.'
+);
+const matiasWhatsApp = buildWhatsAppLink(
+  lineMatias.phoneRaw,
+  '¡Hola Matías! Me comunico desde el sitio web de Quincho Raíces para consultar por disponibilidad de fechas.'
+);
 ---
 
-<section id="hero" class="relative min-h-[96vh] flex items-center justify-center overflow-hidden bg-stone-950 text-white pb-16 sm:pb-24">
+<section id="hero" class="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-[#080a09] text-white pb-14 sm:pb-20">
   <!-- Background Image with Ambient Particles & Gradient Overlay -->
   <div class="absolute inset-0 z-0">
     <Image
@@ -18,103 +29,89 @@ import heroBg from '../assets/images/sunset_terrace.jpg';
       sizes="100vw"
     />
     <!-- Multi-stop gradient for maximum text contrast and elegance -->
-    <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/80 to-stone-900/65"></div>
-    <div class="absolute inset-0 bg-radial-gradient from-transparent to-stone-950/50"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#080a09] via-[#080a09]/80 to-[#080a09]/55"></div>
+    <div class="absolute inset-0 bg-radial-gradient from-transparent to-[#080a09]/50"></div>
     
     <!-- Sunset Horizon Twilight Glow behind the mountain ridges -->
-    <div class="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-amber-600/30 via-orange-500/15 to-transparent pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-amber-600/25 via-emerald-950/20 to-transparent pointer-events-none"></div>
 
     <!-- Organic Ambient Particles (Fireflies / Sunset Spores) -->
     <AmbientParticles count={20} theme="emerald" />
   </div>
 
-  <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12 text-center flex flex-col items-center">
+  <!-- Hero Content: Limpio, Editorial y con Invitación Magnética -->
+  <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 sm:pt-36 sm:pb-20 text-center flex flex-col items-center justify-center">
     
-    <!-- Location Pill Badge -->
-    <div class="reveal-item inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-stone-200 text-sm font-medium mb-6 shadow-lg hover:border-emerald-400/50 transition-colors">
-      <MapPin className="w-4 h-4 text-emerald-400 animate-pulse" />
-      <span>B° Aires de San Benito &bull; La Punta, San Luis</span>
-      <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-    </div>
+    <!-- Supra-title: Contexto geográfico y exclusividad sin ruido -->
+    <p class="reveal-item text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase text-emerald-400/90 mb-4 sm:mb-6">
+      Predio Privado &bull; La Punta, San Luis
+    </p>
 
     <!-- Main Title with Editorial Serif Font -->
-    <h1 class="reveal-item reveal-delay-100 font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.18] mb-6 max-w-4xl text-balance">
+    <h1 class="reveal-item reveal-delay-100 font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.16] max-w-4xl text-balance drop-shadow-2xl mb-8 sm:mb-10">
       El lugar donde tus festejos se convierten en <span class="bg-gradient-to-r from-emerald-300 via-emerald-400 to-teal-200 bg-clip-text text-transparent italic font-normal">momentos inolvidables</span>
     </h1>
 
-    <!-- Subtitle / Value Proposition -->
-    <p class="reveal-item reveal-delay-200 text-base sm:text-xl text-stone-300 max-w-2xl mb-8 leading-relaxed font-normal">
-      Salón cómodo y equipado en <strong class="text-white font-semibold">planta baja para 40 personas</strong>, piscina para disfrutar bajo el agua, parrilla, cocina con horno y freezer, <strong class="text-white font-semibold">vajilla completa sin cargo</strong> y sonido con Bluetooth.
-    </p>
-
-    <!-- CTAs with Micro-interactions -->
-    <div class="reveal-item reveal-delay-300 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-14">
-      <a
-        href="#cotizador"
-        class="shimmer-sweep w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-base shadow-xl shadow-emerald-950/60 hover:shadow-emerald-600/40 transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 focus:ring-offset-stone-900 cursor-pointer"
-      >
-        <Calendar className="w-5 h-5 text-emerald-200" />
-        <span>Cotizar Fecha por WhatsApp</span>
-      </a>
-
-      <a
-        href="#galeria"
-        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-base backdrop-blur-md border border-white/25 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300/40"
-      >
-        <Sparkles className="w-5 h-5 text-amber-300" />
-        <span>Ver Espacio & Galería</span>
-      </a>
-    </div>
-
-    <!-- Trust Stats Grid with Spotlight Hover Effects -->
-    <div class="reveal-item reveal-delay-400 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 w-full max-w-4xl pt-8 border-t border-white/15">
+    <!-- Action Bar: Exploración principal y opción de contacto con Rocío o Matías -->
+    <div class="reveal-item reveal-delay-200 flex flex-col items-center justify-center gap-4 mb-10 sm:mb-12 w-full">
       
-      <div class="spotlight-card spotlight-card-dark flex items-center justify-center gap-3 p-3.5 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 group">
-        <Users className="w-6 h-6 text-emerald-400 flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
-        <div class="text-left">
-          <p class="text-lg font-bold text-white leading-none">Hasta 40</p>
-          <p class="text-xs text-stone-300 mt-0.5">Personas cómodas</p>
-        </div>
-      </div>
+      <!-- Botón Principal: Explorar el espacio -->
+      <a
+        href="#amenities"
+        class="shimmer-sweep w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full bg-emerald-700 hover:bg-emerald-600 text-white font-medium text-sm tracking-wide shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+      >
+        <span>Explorar el espacio</span>
+        <ArrowDown className="w-4 h-4 text-emerald-200" />
+      </a>
 
-      <div class="spotlight-card spotlight-card-dark flex items-center justify-center gap-3 p-3.5 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 group">
-        <Utensils className="w-6 h-6 text-emerald-400 flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
-        <div class="text-left">
-          <p class="text-lg font-bold text-white leading-none">Vajilla 100%</p>
-          <p class="text-xs text-stone-300 mt-0.5">Incluida sin cargo</p>
-        </div>
-      </div>
-
-      <div class="spotlight-card spotlight-card-dark flex items-center justify-center gap-3 p-3.5 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 group">
-        <ShieldCheck className="w-6 h-6 text-emerald-400 flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
-        <div class="text-left">
-          <p class="text-lg font-bold text-white leading-none">Uso Exclusivo</p>
-          <p class="text-xs text-stone-300 mt-0.5">Privacidad total</p>
-        </div>
-      </div>
-
-      <div class="spotlight-card spotlight-card-dark flex items-center justify-center gap-3 p-3.5 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 group">
-        <Sparkles className="w-6 h-6 text-emerald-400 flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
-        <div class="text-left">
-          <p class="text-lg font-bold text-white leading-none">Planta Baja</p>
-          <p class="text-xs text-stone-300 mt-0.5">Calefacción & WiFi</p>
-        </div>
+      <!-- Consultar disponibilidad: Opciones con Rocío o con Matías -->
+      <div class="flex items-center justify-center gap-2 pt-1 flex-wrap text-xs text-stone-300">
+        <span class="text-stone-400 font-normal mr-1">Consultar disponibilidad:</span>
+        <a
+          href={rocioWhatsApp}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/5 hover:bg-emerald-950/80 text-stone-200 hover:text-white border border-white/15 hover:border-emerald-500/50 font-medium transition-all hover:scale-105 active:scale-95"
+        >
+          <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+          <span>Con Rocío</span>
+        </a>
+        <a
+          href={matiasWhatsApp}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/5 hover:bg-emerald-950/80 text-stone-200 hover:text-white border border-white/15 hover:border-emerald-500/50 font-medium transition-all hover:scale-105 active:scale-95"
+        >
+          <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+          <span>Con Matías</span>
+        </a>
       </div>
 
     </div>
 
+    <!-- Discovery Anchors: Pistas discretas de lo que encontrarán abajo -->
+    <div class="reveal-item reveal-delay-300 flex items-center justify-center gap-3 sm:gap-5 text-xs text-stone-300/80 tracking-wide font-normal flex-wrap">
+      <span>Salón para 40</span>
+      <span class="w-1 h-1 rounded-full bg-emerald-500/60 hidden sm:inline-block"></span>
+      <span>Piscina con vistas</span>
+      <span class="w-1 h-1 rounded-full bg-emerald-500/60 hidden sm:inline-block"></span>
+      <span>Parrilla & Asador</span>
+      <span class="w-1 h-1 rounded-full bg-emerald-500/60 hidden sm:inline-block"></span>
+      <span>Uso 100% exclusivo</span>
+    </div>
+
   </div>
 
-  <!-- Mountain Silhouette Transition into Highlights -->
+  <!-- Mountain Silhouette Transition into Next Section -->
   <div class="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
-    <MountainSilhouette variant="sunset" fillColor="#ffffff" />
+    <MountainSilhouette variant="sunset" fillColor="#080a09" />
   </div>
 
-  <!-- Scroll Down Indicator placed nicely over mountains -->
+  <!-- Scroll Down Indicator -->
   <a
     href="#amenities"
-    aria-label="Desplazarse a instalaciones"
-    class="absolute bottom-1 sm:bottom-3 left-1/2 -translate-x-1/2 z-30 p-2 text-stone-400 hover:text-emerald-600 transition-colors duration-200 animate-bounce"
+    aria-label="Lo que ofrecemos"
+    class="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 z-30 p-2 text-emerald-400/80 hover:text-emerald-300 transition-colors duration-200 animate-bounce"
   >
     <ChevronDown className="w-6 h-6" />
   </a>
