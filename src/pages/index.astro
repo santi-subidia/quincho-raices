@@ -15,16 +15,16 @@ import MountainSilhouette from '../components/MountainSilhouette.astro';
 
 <Layout>
   <Navbar />
-  <main class="relative overflow-x-clip">
+  <main class="relative overflow-x-clip bg-[#f8faf9]">
     <Hero />
     <RootDivider className="my-2" />
     <Amenities />
     <Gallery client:visible />
     <EventShowcase client:visible />
 
-    <!-- Mountain Silhouette Transition: Celebraciones -> Ubicación en La Punta -->
-    <div class="relative w-full bg-[#080a09] leading-none pointer-events-none -mb-1">
-      <MountainSilhouette variant="stone" fillColor="#0c100e" />
+    <!-- Mountain Silhouette Transition: Del fondo claro hacia Ubicación (#f3f6f4) -->
+    <div class="relative w-full bg-[#f8faf9] leading-none pointer-events-none -mb-1">
+      <MountainSilhouette variant="stone" fillColor="#f3f6f4" />
     </div>
 
     <Location />

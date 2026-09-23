@@ -5,7 +5,7 @@ interface Props {
   isDark?: boolean;
 }
 
-const { flip = false, className = '', isDark = true } = Astro.props;
+const { flip = false, className = '', isDark = false } = Astro.props;
 ---
 
 <div
@@ -15,7 +15,7 @@ const { flip = false, className = '', isDark = true } = Astro.props;
   aria-hidden="true"
 >
   <svg
-    class="w-full max-w-4xl h-10 opacity-85"
+    class="w-full max-w-4xl h-10 opacity-70"
     viewBox="0 0 800 50"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -27,20 +27,19 @@ const { flip = false, className = '', isDark = true } = Astro.props;
       </filter>
     </defs>
 
-    <!-- Central Organic Root Runner with Glow -->
+    <!-- Central Organic Root Runner -->
     <path
       d="M0 25 C150 25, 220 18, 320 28 C400 36, 460 16, 560 26 C640 34, 700 24, 800 25"
-      stroke={isDark ? 'rgba(52, 211, 153, 0.55)' : 'rgba(52, 120, 90, 0.35)'}
-      stroke-width="2"
+      stroke={isDark ? 'rgba(52, 211, 153, 0.55)' : 'rgba(5, 150, 105, 0.35)'}
+      stroke-width="1.8"
       stroke-linecap="round"
       fill="none"
-      filter={isDark ? "url(#root-divider-glow)" : undefined}
     />
 
     <!-- Secondary Twig 1 -->
     <path
       d="M260 23 C280 12, 305 8, 325 10"
-      stroke={isDark ? 'rgba(52, 211, 153, 0.65)' : 'rgba(52, 120, 90, 0.4)'}
+      stroke={isDark ? 'rgba(52, 211, 153, 0.65)' : 'rgba(5, 150, 105, 0.4)'}
       stroke-width="1.5"
       stroke-linecap="round"
       fill="none"
@@ -50,13 +49,13 @@ const { flip = false, className = '', isDark = true } = Astro.props;
       cx="326"
       cy="10"
       r="2.5"
-      fill={isDark ? '#6ee7b7' : '#34d399'}
+      fill={isDark ? '#6ee7b7' : '#10b981'}
     />
 
     <!-- Secondary Twig 2 (Descending) -->
     <path
       d="M480 21 C505 32, 530 38, 555 35"
-      stroke={isDark ? 'rgba(52, 211, 153, 0.65)' : 'rgba(52, 120, 90, 0.4)'}
+      stroke={isDark ? 'rgba(52, 211, 153, 0.65)' : 'rgba(5, 150, 105, 0.4)'}
       stroke-width="1.5"
       stroke-linecap="round"
       fill="none"
@@ -66,13 +65,13 @@ const { flip = false, className = '', isDark = true } = Astro.props;
       cx="556"
       cy="35"
       r="2.5"
-      fill={isDark ? '#6ee7b7' : '#34d399'}
+      fill={isDark ? '#6ee7b7' : '#10b981'}
     />
 
-    <!-- Subtle Center Sprout Cluster -->
+    <!-- Center Sprout Cluster -->
     <path
       d="M395 34 C402 38, 412 37, 416 32"
-      stroke={isDark ? 'rgba(52, 211, 153, 0.6)' : 'rgba(52, 120, 90, 0.35)'}
+      stroke={isDark ? 'rgba(52, 211, 153, 0.6)' : 'rgba(5, 150, 105, 0.35)'}
       stroke-width="1.2"
       fill="none"
     />
@@ -80,7 +79,7 @@ const { flip = false, className = '', isDark = true } = Astro.props;
       cx="416"
       cy="32"
       r="2"
-      fill={isDark ? '#a7f3d0' : '#10b981'}
+      fill={isDark ? '#a7f3d0' : '#059669'}
     />
   </svg>
 </div>

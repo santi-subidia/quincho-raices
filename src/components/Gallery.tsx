@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import {
   GALLERY_PHOTOS,
   CONTACT_LINES,
@@ -13,7 +14,6 @@ import {
   MessageCircle,
   Maximize2,
   Camera,
-  CheckCircle2,
 } from 'lucide-react';
 
 interface CategoryOption {
@@ -114,10 +114,8 @@ export const Gallery: React.FC = () => {
     const minSwipeDistance = 50;
 
     if (distance > minSwipeDistance) {
-      // Swiped left -> next photo
       handleNext();
     } else if (distance < -minSwipeDistance) {
-      // Swiped right -> prev photo
       handlePrev();
     }
 
@@ -130,32 +128,28 @@ export const Gallery: React.FC = () => {
   return (
     <section
       id="galeria"
-      className="py-20 sm:py-28 bg-[#0a0e0c] relative border-b border-emerald-950/40 overflow-hidden"
+      className="py-20 sm:py-28 bg-[#f8faf9] relative border-b border-stone-200/80 overflow-hidden"
     >
-      {/* Subtle Background Lighting */}
-      <div className="absolute top-1/3 -left-48 w-96 h-96 bg-radial from-emerald-950/20 via-transparent to-transparent blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-radial from-amber-950/15 via-transparent to-transparent blur-3xl pointer-events-none"></div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="reveal-item text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-950/80 text-emerald-300 text-xs font-semibold tracking-wide uppercase mb-3 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.15)]">
-            <Camera className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Fotografías 100% Reales del Predio</span>
+        <div className="reveal-item text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold tracking-wide uppercase mb-3.5 border border-emerald-200 shadow-xs">
+            <Camera className="w-3.5 h-3.5 text-emerald-600" />
+            <span>Fotografías 100% Reales</span>
           </div>
           
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-100 tracking-tight mb-4">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 tracking-tight mb-4">
             Recorré nuestras instalaciones
           </h2>
           
-          <p className="text-sm sm:text-base text-stone-300 leading-relaxed max-w-2xl mx-auto">
-            Imágenes tomadas directamente en Quincho Raíces en La Punta, San Luis. Todo lo que ves está listo y equipado para recibir a tus comensales.
+          <p className="text-base sm:text-lg text-stone-600 leading-relaxed max-w-2xl mx-auto">
+            Fotos reales de Quincho Raíces en La Punta, San Luis. Todo listo para recibir a tus comensales.
           </p>
         </div>
 
-        {/* Category Filters with Item Counts */}
-        <div className="reveal-item reveal-delay-100 flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12 sm:mb-16">
+        {/* Clean Category Filters */}
+        <div className="reveal-item reveal-delay-100 flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10 sm:mb-12">
           {CATEGORY_OPTIONS.map((cat) => {
             const isActive = selectedCategory === cat.id;
             const count = getCategoryCount(cat.id);
@@ -168,31 +162,39 @@ export const Gallery: React.FC = () => {
                   setSelectedCategory(cat.id);
                   setActivePhotoIndex(null);
                 }}
-                className={`inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
+                className={`relative inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-colors duration-200 cursor-pointer ${
                   isActive
-                    ? 'bg-emerald-700 text-white shadow-[0_0_20px_rgba(16,185,129,0.35)] ring-1 ring-emerald-400/60 scale-102'
-                    : 'bg-[#101713] text-stone-300 border border-emerald-950/90 hover:bg-[#15201a] hover:border-emerald-700/50 hover:text-white'
+                    ? 'text-white'
+                    : 'bg-white text-stone-700 border border-stone-200 hover:bg-emerald-50 hover:border-emerald-300 hover:text-emerald-700 shadow-xs'
                 }`}
               >
-                <span>{cat.label}</span>
-                <span
-                  className={`text-[11px] px-1.5 py-0.2 rounded-full font-mono ${
-                    isActive
-                      ? 'bg-emerald-800/80 text-emerald-100'
-                      : 'bg-stone-900 text-stone-400'
-                  }`}
-                >
-                  {count}
+                {isActive && (
+                  <motion.div
+                    layoutId="activeGalleryTabPill"
+                    className="absolute inset-0 bg-emerald-600 rounded-full shadow-md shadow-emerald-600/25"
+                    transition={{ type: 'spring', stiffness: 450, damping: 32 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-2">
+                  <span>{cat.label}</span>
+                  <span
+                    className={`text-[11px] px-1.5 py-0.2 rounded-full font-mono ${
+                      isActive
+                        ? 'bg-emerald-700 text-emerald-100'
+                        : 'bg-stone-100 text-stone-600'
+                    }`}
+                  >
+                    {count}
+                  </span>
                 </span>
               </button>
             );
           })}
         </div>
 
-        {/* Editorial Asymmetric Photo Mosaic */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 auto-rows-[290px] sm:auto-rows-[330px]">
+        {/* Editorial Photo Mosaic */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 auto-rows-[280px] sm:auto-rows-[320px]">
           {filteredPhotos.map((photo, index) => {
-            // In 'all' view, give hero panoramic shots a 2-column span for magazine editorial hierarchy
             const isFeatured = selectedCategory === 'all' && photo.featured;
 
             return (
@@ -208,14 +210,14 @@ export const Gallery: React.FC = () => {
                     handleOpenLightbox(index);
                   }
                 }}
-                className={`group relative rounded-3xl overflow-hidden cursor-pointer bg-[#0e1411] shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1 border border-emerald-950/70 hover:border-emerald-500/50 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 focus:ring-offset-[#080a09] ${
+                className={`group relative rounded-3xl overflow-hidden cursor-pointer bg-white shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 border border-stone-200/90 hover:border-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 ${
                   isFeatured ? 'md:col-span-2' : 'col-span-1'
                 }`}
               >
                 <img
                   src={photo.src}
                   alt={photo.title}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-106"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   loading="lazy"
                   decoding="async"
                   width={isFeatured ? 1200 : 600}
@@ -223,27 +225,27 @@ export const Gallery: React.FC = () => {
                   data-image-component="true"
                 />
 
-                {/* Passepartout Gradient: Clear view of photo, subtle dark scrim at bottom */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#060807]/95 via-[#060807]/30 to-transparent opacity-65 group-hover:opacity-90 transition-opacity duration-300"></div>
+                {/* Light bottom gradient scrim for legible text without darkening the full image */}
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent opacity-75 group-hover:opacity-90 transition-opacity duration-300"></div>
 
                 {/* Category Pill Tag Top-Left */}
                 <div className="absolute top-4 left-4 z-10">
-                  <span className="text-[11px] font-semibold px-3 py-1 rounded-full bg-[#080a09]/85 backdrop-blur-md text-emerald-200 border border-emerald-500/30 shadow-md">
+                  <span className="text-[11px] font-semibold px-3 py-1 rounded-full bg-white/95 backdrop-blur-md text-emerald-800 border border-stone-200 shadow-sm">
                     {photo.categoryLabel}
                   </span>
                 </div>
 
-                {/* Zoom Icon Top-Right (Appears softly on hover) */}
-                <div className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-all duration-300 p-2.5 rounded-full bg-[#080a09]/85 text-emerald-300 border border-emerald-500/40 backdrop-blur-sm shadow-md transform translate-y-1 group-hover:translate-y-0">
-                  <Maximize2 className="w-4 h-4" />
+                {/* Zoom Icon Top-Right */}
+                <div className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-all duration-300 p-2.5 rounded-full bg-white/90 text-stone-800 border border-stone-200 backdrop-blur-sm shadow-md transform translate-y-1 group-hover:translate-y-0">
+                  <Maximize2 className="w-4 h-4 text-emerald-600" />
                 </div>
 
                 {/* Bottom Details Panel */}
-                <div className="absolute bottom-0 inset-x-0 p-5 sm:p-6 text-white z-10 transform translate-y-0.5 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-base sm:text-lg font-serif font-bold leading-snug mb-1 text-stone-100 group-hover:text-emerald-300 transition-colors">
+                <div className="absolute bottom-0 inset-x-0 p-5 sm:p-6 text-white z-10">
+                  <h3 className="text-base sm:text-lg font-serif font-bold leading-snug mb-1 text-white group-hover:text-emerald-200 transition-colors">
                     {photo.title}
                   </h3>
-                  <p className="text-xs text-stone-300 line-clamp-2 leading-relaxed opacity-85 group-hover:opacity-100 transition-opacity">
+                  <p className="text-xs text-stone-200 line-clamp-2 leading-relaxed opacity-90">
                     {photo.description}
                   </p>
                 </div>
@@ -252,13 +254,13 @@ export const Gallery: React.FC = () => {
           })}
         </div>
 
-        {/* Deluxe Lightbox Modal */}
+        {/* Lightbox Modal */}
         {activePhoto && (
           <div
             role="dialog"
             aria-modal="true"
             aria-label={`Foto ampliada: ${activePhoto.title}`}
-            className="fixed inset-0 z-50 flex flex-col justify-between bg-[#050706]/98 backdrop-blur-2xl p-3 sm:p-6 animate-in fade-in duration-200"
+            className="fixed inset-0 z-50 flex flex-col justify-between bg-stone-950/92 backdrop-blur-xl p-3 sm:p-6 animate-in fade-in duration-200"
             onClick={handleCloseLightbox}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
@@ -270,11 +272,11 @@ export const Gallery: React.FC = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center gap-3">
-                <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-950/80 text-emerald-300 border border-emerald-500/30">
+                <span className="font-mono text-xs font-semibold px-3 py-1 rounded-full bg-white/10 text-white border border-white/20">
                   {String(activePhotoIndex! + 1).padStart(2, '0')} /{' '}
                   {String(filteredPhotos.length).padStart(2, '0')}
                 </span>
-                <span className="text-xs text-stone-400 hidden sm:inline">
+                <span className="text-xs text-stone-300 hidden sm:inline">
                   {activePhoto.categoryLabel}
                 </span>
               </div>
@@ -282,7 +284,7 @@ export const Gallery: React.FC = () => {
               <button
                 type="button"
                 onClick={handleCloseLightbox}
-                className="p-2.5 rounded-full bg-[#101713]/80 hover:bg-emerald-900/60 border border-emerald-500/30 text-stone-200 hover:text-white transition-colors cursor-pointer"
+                className="p-2.5 rounded-full bg-white/15 hover:bg-white/25 text-white transition-colors cursor-pointer"
                 aria-label="Cerrar visor"
               >
                 <X className="w-5 h-5" />
@@ -301,7 +303,7 @@ export const Gallery: React.FC = () => {
                   e.stopPropagation();
                   handlePrev();
                 }}
-                className="absolute left-2 sm:left-4 z-30 p-3 rounded-full bg-[#0c120f]/80 hover:bg-emerald-900/60 border border-emerald-500/30 text-stone-200 hover:text-white shadow-xl transition-transform hover:scale-110 cursor-pointer"
+                className="absolute left-2 sm:left-4 z-30 p-3 rounded-full bg-black/50 hover:bg-black/80 text-white transition-transform hover:scale-110 cursor-pointer"
                 aria-label="Foto anterior"
               >
                 <ChevronLeft className="w-6 h-6" />
@@ -312,7 +314,7 @@ export const Gallery: React.FC = () => {
                 <img
                   src={activePhoto.src}
                   alt={activePhoto.title}
-                  className="max-h-[62vh] sm:max-h-[66vh] w-auto max-w-full object-contain rounded-2xl shadow-2xl border border-emerald-950/80 animate-in zoom-in-95 duration-200"
+                  className="max-h-[62vh] sm:max-h-[66vh] w-auto max-w-full object-contain rounded-2xl shadow-2xl animate-in zoom-in-95 duration-200"
                   width={1400}
                   height={900}
                   data-image-component="true"
@@ -326,7 +328,7 @@ export const Gallery: React.FC = () => {
                   e.stopPropagation();
                   handleNext();
                 }}
-                className="absolute right-2 sm:right-4 z-30 p-3 rounded-full bg-[#0c120f]/80 hover:bg-emerald-900/60 border border-emerald-500/30 text-stone-200 hover:text-white shadow-xl transition-transform hover:scale-110 cursor-pointer"
+                className="absolute right-2 sm:right-4 z-30 p-3 rounded-full bg-black/50 hover:bg-black/80 text-white transition-transform hover:scale-110 cursor-pointer"
                 aria-label="Foto siguiente"
               >
                 <ChevronRight className="w-6 h-6" />
@@ -338,9 +340,8 @@ export const Gallery: React.FC = () => {
               className="w-full max-w-4xl mx-auto flex flex-col items-center gap-3 z-20 pb-2"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Title & Description */}
               <div className="text-center px-4">
-                <h4 className="font-serif text-base sm:text-xl font-bold text-stone-100">
+                <h4 className="font-serif text-base sm:text-xl font-bold text-white">
                   {activePhoto.title}
                 </h4>
                 <p className="text-xs sm:text-sm text-stone-300 max-w-xl mx-auto mt-0.5 line-clamp-2">
@@ -383,9 +384,9 @@ export const Gallery: React.FC = () => {
                 )}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="shimmer-sweep inline-flex items-center gap-2 px-5 py-2 rounded-full bg-emerald-700 hover:bg-emerald-600 text-white font-semibold text-xs sm:text-sm shadow-[0_0_15px_rgba(16,185,129,0.3)] transition-all cursor-pointer"
+                className="shimmer-sweep inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm shadow-md transition-all cursor-pointer"
               >
-                <MessageCircle className="w-4 h-4 text-emerald-200" />
+                <MessageCircle className="w-4 h-4 text-emerald-100" />
                 <span>Consultar por este espacio en WhatsApp</span>
               </a>
             </div>

@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { QUINCHO_INFO, CONTACT_LINES, buildWhatsAppLink } from '../data/quincho';
-import { Phone, MapPin, Heart } from 'lucide-react';
+import { Phone, MapPin, Heart, MessageCircle } from 'lucide-react';
 import MountainSilhouette from './MountainSilhouette.astro';
 import TreeEmblemWatermark from './TreeEmblemWatermark.astro';
 import logoImg from '../assets/images/logo_profile.jpg';
@@ -9,10 +9,10 @@ import logoImg from '../assets/images/logo_profile.jpg';
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-[#050706] text-stone-300 relative border-t border-emerald-950/30 overflow-hidden">
-  <!-- Mountain Silhouette Transition from FAQ into Footer -->
-  <div class="relative w-full bg-[#080a09] leading-none pointer-events-none">
-    <MountainSilhouette variant="night" fillColor="#050706" />
+<footer class="bg-stone-900 text-stone-300 relative border-t border-stone-800 overflow-hidden">
+  <!-- Mountain Silhouette Transition from white FAQ into stone-900 Footer -->
+  <div class="relative w-full bg-white leading-none pointer-events-none -mb-1">
+    <MountainSilhouette variant="stone" fillColor="#1c1917" />
   </div>
 
   <!-- Background Botanical Watermark -->
@@ -27,13 +27,13 @@ const currentYear = new Date().getFullYear();
           <Image
             src={logoImg}
             alt="Logo Quincho Raíces"
-            class="w-12 h-12 rounded-full object-cover border-2 border-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.35)]"
+            class="w-12 h-12 rounded-full object-cover border-2 border-emerald-500 shadow-md shadow-emerald-500/20"
             width={48}
             height={48}
             loading="lazy"
           />
           <div>
-            <span class="font-serif text-2xl font-bold tracking-tight text-stone-100 block">
+            <span class="font-serif text-2xl font-bold tracking-tight text-white block">
               {QUINCHO_INFO.name}
             </span>
             <span class="text-xs font-semibold text-emerald-400">
@@ -42,35 +42,35 @@ const currentYear = new Date().getFullYear();
           </div>
         </div>
 
-        <p class="text-sm text-stone-300 max-w-md leading-relaxed">
+        <p class="text-sm text-stone-400 max-w-md leading-relaxed">
           {QUINCHO_INFO.description}
         </p>
 
-        <!-- Social Media Link (Instagram SVG) -->
+        <!-- Social Media Link (Instagram) -->
         <div class="pt-2">
           <a
             href={QUINCHO_INFO.social.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-[#0b100d] hover:bg-[#121914] border border-emerald-950/80 hover:border-pink-500/40 text-stone-200 text-sm font-semibold transition-all group"
+            class="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-stone-800 hover:bg-stone-750 border border-stone-700 hover:border-pink-500/50 text-stone-200 text-sm font-semibold transition-all group"
           >
             <svg class="w-4 h-4 text-pink-400 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
               <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
             </svg>
-            <span>Seguinos en Instagram <strong class="text-pink-300 font-bold">{QUINCHO_INFO.social.handle}</strong></span>
+            <span>Instagram <strong class="text-pink-300 font-bold">{QUINCHO_INFO.social.handle}</strong></span>
           </a>
         </div>
       </div>
 
       <!-- Quick Links (3 cols) -->
       <div class="lg:col-span-3 space-y-3">
-        <h4 class="text-sm font-serif font-bold uppercase tracking-wider text-stone-100">Navegación</h4>
-        <ul class="space-y-2 text-sm">
+        <h4 class="text-sm font-serif font-bold uppercase tracking-wider text-white">Navegación</h4>
+        <ul class="space-y-2.5 text-sm">
           <li>
             <a href="#amenities" class="text-stone-400 hover:text-emerald-400 transition-colors">
-              Lo que ofrecemos
+              Instalaciones
             </a>
           </li>
           <li>
@@ -98,21 +98,21 @@ const currentYear = new Date().getFullYear();
 
       <!-- Contact Lines (4 cols) -->
       <div class="lg:col-span-4 space-y-3">
-        <h4 class="text-sm font-serif font-bold uppercase tracking-wider text-stone-100">Líneas de Atención</h4>
+        <h4 class="text-sm font-serif font-bold uppercase tracking-wider text-white">Líneas de Atención</h4>
         <div class="space-y-3">
           {CONTACT_LINES.map((line) => {
             const url = buildWhatsAppLink(
               line.phoneRaw,
-              '¡Hola Quincho Raíces! Me comunico desde el sitio web.'
+              '¡Hola Quincho Raíces! Me comunico desde el sitio web para consultar disponibilidad.'
             );
             return (
               <a
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex items-center gap-3 p-3 rounded-2xl bg-[#0b100d] border border-emerald-950/80 hover:border-emerald-500/50 transition-colors group"
+                class="flex items-center gap-3 p-3 rounded-2xl bg-stone-800/80 border border-stone-700/80 hover:border-emerald-500/60 transition-colors group"
               >
-                <div class="p-2 rounded-xl bg-emerald-950 text-emerald-400 border border-emerald-900/50 group-hover:bg-emerald-700 group-hover:text-white transition-colors">
+                <div class="p-2 rounded-xl bg-emerald-950/80 text-emerald-400 border border-emerald-800/50 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
                   <Phone className="w-4 h-4" />
                 </div>
                 <div>
@@ -135,7 +135,7 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <!-- Bottom Bar -->
-    <div class="mt-12 pt-8 border-t border-emerald-950/60 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-400 gap-4">
+    <div class="mt-12 pt-8 border-t border-stone-800 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 gap-4">
       <p>&copy; {currentYear} {QUINCHO_INFO.name}. Todos los derechos reservados.</p>
       <p class="flex items-center gap-1">
         <span>Diseñado con</span>

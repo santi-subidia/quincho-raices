@@ -16,7 +16,7 @@ const faqSchema = {
 };
 ---
 
-<section id="faq" class="py-20 sm:py-28 bg-[#080a09] border-t border-emerald-950/40 relative">
+<section id="faq" class="py-20 sm:py-28 bg-white border-t border-stone-200/80 relative">
   <!-- FAQ Schema.org JSON-LD -->
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
@@ -24,35 +24,35 @@ const faqSchema = {
     
     <!-- Section Header -->
     <div class="reveal-item text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/80 text-emerald-300 text-xs font-bold tracking-wide uppercase mb-3.5 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-        <HelpCircle className="w-3.5 h-3.5 text-emerald-400" />
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold tracking-wide uppercase mb-3.5 border border-emerald-200 shadow-xs">
+        <HelpCircle className="w-3.5 h-3.5 text-emerald-600" />
         <span>Dudas Frecuentes</span>
       </div>
-      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-100 tracking-tight mb-4">
+      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 tracking-tight mb-4">
         Preguntas frecuentes sobre el alquiler
       </h2>
-      <p class="text-base sm:text-lg text-stone-300 leading-relaxed">
-        Respondemos las preguntas más habituales para que reserves con total tranquilidad y confianza.
+      <p class="text-base sm:text-lg text-stone-600 leading-relaxed">
+        Respuestas directas y claras para que reserves con total tranquilidad.
       </p>
     </div>
 
-    <!-- Smooth Accordion List -->
-    <div class="space-y-4">
+    <!-- Smooth Accordion List (Light Cards) -->
+    <div class="space-y-3.5">
       {FAQS.map((item, index) => {
         const delayClass = index === 0 ? '' : index === 1 ? 'reveal-delay-100' : 'reveal-delay-200';
         return (
           <details
-            class={`reveal-item ${delayClass} faq-accordion group bg-[#0d1310]/85 backdrop-blur-xl rounded-2xl border border-emerald-950/80 overflow-hidden transition-all duration-300 open:bg-[#121a15] open:border-emerald-500/50 shadow-md hover:border-emerald-800/60`}
+            class={`reveal-item ${delayClass} faq-accordion group bg-[#f8faf9] rounded-2xl border border-stone-200/90 overflow-hidden transition-all duration-300 open:bg-white open:border-emerald-400 shadow-2xs hover:border-emerald-300`}
             open={index === 0}
           >
-            <summary class="flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer select-none font-serif font-bold text-stone-100 group-open:text-emerald-300 hover:text-emerald-400 transition-colors">
+            <summary class="flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer select-none font-serif font-bold text-stone-900 group-open:text-emerald-700 hover:text-emerald-700 transition-colors">
               <span class="text-base sm:text-lg pr-4">{item.question}</span>
-              <div class="p-2 rounded-full bg-[#141e17] group-open:bg-emerald-950 text-stone-300 group-open:text-emerald-300 border border-emerald-900/40 transition-transform duration-300 group-open:rotate-180 flex-shrink-0 shadow-2xs">
+              <div class="p-2 rounded-full bg-white group-open:bg-emerald-50 text-stone-500 group-open:text-emerald-600 border border-stone-200 group-open:border-emerald-300 transition-transform duration-300 group-open:rotate-180 flex-shrink-0 shadow-2xs">
                 <ChevronDown className="w-4 h-4" />
               </div>
             </summary>
             <div class="faq-content">
-              <div class="faq-content-inner px-5 pb-6 pt-2 sm:px-6 text-sm sm:text-base text-stone-300 leading-relaxed border-t border-emerald-950/60 group-open:border-emerald-900/40">
+              <div class="faq-content-inner px-5 pb-6 pt-1 sm:px-6 text-sm sm:text-base text-stone-600 leading-relaxed border-t border-stone-100 group-open:border-emerald-100">
                 {item.answer}
               </div>
             </div>

@@ -1,130 +1,93 @@
 ---
-import { OFFER_PILLARS } from '../data/quincho';
+import { WHY_CHOOSE_US } from '../data/quincho';
 import TreeEmblemWatermark from './TreeEmblemWatermark.astro';
 import {
-  Utensils,
-  Wifi,
-  Flame,
-  Volume2,
-  Car,
+  Mountain,
   Users,
-  Lightbulb,
-  Bath,
-  ChefHat,
-  Snowflake,
   Waves,
-  Lock,
-  Sparkles,
+  ChefHat,
   Check,
+  Sparkles,
 } from 'lucide-react';
 
 const iconMap: Record<string, any> = {
-  Utensils,
-  Wifi,
-  Flame,
-  Volume2,
-  Car,
+  Mountain,
   Users,
-  Lightbulb,
-  Bath,
-  ChefHat,
-  Snowflake,
   Waves,
-  Lock,
-  Sparkles,
+  ChefHat,
 };
 ---
 
-<section id="amenities" class="py-20 sm:py-28 bg-[#080a09] relative border-b border-emerald-950/40 scroll-mt-20 overflow-hidden">
-  <!-- Botanical Watermark Depth -->
-  <TreeEmblemWatermark className="top-12 -right-32 md:right-10 w-[550px] h-[550px]" opacity={0.035} strokeColor="#10b981" />
-  <TreeEmblemWatermark className="-bottom-32 -left-32 w-[500px] h-[500px]" opacity={0.025} strokeColor="#34d399" />
+<section id="amenities" class="py-20 sm:py-28 bg-[#f8faf9] relative border-b border-stone-200/80 scroll-mt-20 overflow-hidden">
+  <!-- Subtle Botanical Watermark for depth -->
+  <TreeEmblemWatermark className="top-12 -right-32 md:right-10 w-[550px] h-[550px]" opacity={0.035} strokeColor="#059669" />
+  <TreeEmblemWatermark className="-bottom-32 -left-32 w-[500px] h-[500px]" opacity={0.025} strokeColor="#10b981" />
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     
-    <!-- Section Header: "Lo que ofrecemos" -->
+    <!-- Section Header: "¿Por qué elegir Quincho Raíces?" estilo Vivanco -->
     <div class="reveal-item text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/80 text-emerald-300 text-xs font-bold tracking-wide uppercase mb-3.5 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-        <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-        <span>Todo incluido en tu reserva</span>
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold tracking-wide uppercase mb-3.5 border border-emerald-200 shadow-xs">
+        <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+        <span>Instalaciones & Comodidad</span>
       </div>
-      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-100 tracking-tight mb-4 text-balance">
-        Lo que ofrecemos
+      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 tracking-tight mb-4 text-balance">
+        ¿Por qué elegir Quincho Raíces?
       </h2>
-      <p class="text-base sm:text-lg text-stone-300 leading-relaxed max-w-2xl mx-auto">
-        Instalaciones completas y confortables preparadas para hasta 40 personas: mobiliario, vajilla sin cargo extra, cocina industrial, sonido y uso 100% exclusivo de todo el predio.
+      <p class="text-base sm:text-lg text-stone-600 leading-relaxed max-w-2xl mx-auto">
+        Espacio exclusivo en planta baja para hasta 40 personas. Todo pensado para que tu festejo sea cómodo, privado y sin sorpresas.
       </p>
     </div>
 
-    <!-- Grid estructurado con 4 Pilares -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-4">
-      {OFFER_PILLARS.map((pillar, pillarIndex) => {
-        const PillarIcon = iconMap[pillar.icon] || Sparkles;
-        const delayClass = pillarIndex % 2 === 0 ? 'reveal-delay-100' : 'reveal-delay-200';
+    <!-- Grid de 4 Tarjetas Claras y Luminosas -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+      {WHY_CHOOSE_US.map((item, index) => {
+        const ItemIcon = iconMap[item.icon] || Sparkles;
+        const delayClass = index % 2 === 0 ? 'reveal-delay-100' : 'reveal-delay-200';
 
         return (
           <div
-            class={`reveal-item ${delayClass} spotlight-card spotlight-card-dark relative flex flex-col rounded-3xl bg-[#0d1310]/85 backdrop-blur-xl border border-emerald-900/30 shadow-[0_10px_40px_rgba(0,0,0,0.6)] hover:border-emerald-500/50 hover:shadow-[0_15px_50px_rgba(0,0,0,0.8)] transition-all duration-300 overflow-hidden group`}
+            class={`reveal-item ${delayClass} bg-white rounded-3xl p-6 sm:p-8 border border-stone-200/80 shadow-md shadow-stone-200/50 hover:shadow-xl hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group`}
           >
-            <!-- Pillar Header Accent -->
-            <div class={`p-6 sm:p-8 bg-gradient-to-br ${pillar.accent.gradient} border-b border-emerald-950/50`}>
-              <div class="flex items-center justify-between gap-3 mb-4">
-                <div class="flex items-center gap-3">
-                  <div class={`p-3 rounded-2xl ${pillar.accent.iconBg} shadow-sm group-hover:scale-105 group-hover:rotate-1 transition-transform duration-300`}>
-                    <PillarIcon className="w-5 h-5" />
+            <div>
+              <!-- Top Row: Icono Circular de Color Vivo + Badge + Número -->
+              <div class="flex items-center justify-between gap-3 mb-6">
+                <div class="flex items-center gap-3.5">
+                  <div class={`w-13 h-13 rounded-2xl ${item.iconBg} flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300`}>
+                    <ItemIcon className="w-6 h-6" />
                   </div>
                   <div>
-                    <span class="text-[11px] font-mono font-bold uppercase tracking-widest text-emerald-400/80 block">
-                      Pilar {pillar.number}
-                    </span>
-                    <span class={`inline-block text-xs font-bold ${pillar.accent.text} px-2.5 py-0.5 rounded-full bg-emerald-950/70 border border-emerald-500/25 mt-0.5`}>
-                      {pillar.badge}
+                    <span class={`inline-block text-xs font-bold px-3 py-1 rounded-full border ${item.badgeColor}`}>
+                      {item.badge}
                     </span>
                   </div>
                 </div>
-                <span class="text-xs font-mono font-bold text-stone-500 group-hover:text-emerald-400/60 transition-colors">
-                  0{pillarIndex + 1}/04
+                <span class="text-xs font-mono font-bold text-stone-400 group-hover:text-emerald-600 transition-colors">
+                  0{index + 1}/04
                 </span>
               </div>
 
-              <h3 class="text-2xl sm:text-3xl font-serif font-bold text-stone-100 mb-2">
-                {pillar.title}
+              <!-- Title & Short Description (Yendo al grano) -->
+              <h3 class="text-xl sm:text-2xl font-serif font-bold text-stone-900 mb-2 leading-snug group-hover:text-emerald-700 transition-colors">
+                {item.title}
               </h3>
-              <p class="text-xs sm:text-sm font-medium text-stone-300 leading-relaxed">
-                {pillar.tagline}
+              <p class="text-sm text-stone-600 leading-relaxed mb-6">
+                {item.description}
               </p>
             </div>
 
-            <!-- Pillar Body: Detailed Features Checklist -->
-            <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
-              <div class="space-y-4 mb-2">
-                {pillar.items.map((subItem) => {
-                  const SubIcon = iconMap[subItem.icon] || Check;
-                  return (
-                    <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-[#121a15]/75 border border-emerald-950/60 hover:bg-[#16221b] hover:border-emerald-800/60 transition-colors duration-200">
-                      <div class="p-2 rounded-xl bg-emerald-950/90 border border-emerald-800/40 text-emerald-400 shrink-0 mt-0.5 shadow-2xs">
-                        <SubIcon className="w-4 h-4" />
-                      </div>
-                      <div class="flex-1 min-w-0">
-                        <div class="flex items-center justify-between gap-2 flex-wrap">
-                          <h4 class="text-sm font-bold text-stone-100 leading-tight">
-                            {subItem.title}
-                          </h4>
-                          {subItem.highlightBadge && (
-                            <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-emerald-950/80 text-emerald-300 border border-emerald-800/40">
-                              {subItem.highlightBadge}
-                            </span>
-                          )}
-                        </div>
-                        <p class="text-xs text-stone-300 mt-1 leading-relaxed">
-                          {subItem.description}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+            <!-- Bullet points concisos de 1 línea -->
+            <div class="space-y-2.5 pt-4 border-t border-stone-100">
+              {item.highlights.map((highlight) => (
+                <div class="flex items-center gap-2.5 text-xs sm:text-sm text-stone-700 font-medium">
+                  <div class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
+                    <Check className="w-3.5 h-3.5 text-emerald-700" />
+                  </div>
+                  <span>{highlight}</span>
+                </div>
+              ))}
             </div>
+
           </div>
         );
       })}

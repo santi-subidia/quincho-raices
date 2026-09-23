@@ -7,25 +7,25 @@ interface Props {
 
 const {
   variant = 'sunset',
-  fillColor = '#080a09',
+  fillColor = '#f8faf9',
   className = '',
 } = Astro.props;
 
-// Colors for the 3 depth layers based on variant
+// Colors for the 3 depth layers based on variant (tuned for light backgrounds)
 const layers = {
   sunset: {
-    back: 'rgba(217, 100, 11, 0.35)', // Warm amber twilight ridge
-    mid: 'rgba(52, 120, 90, 0.5)',     // Molle / green mountain ridge
+    back: 'rgba(245, 158, 11, 0.2)',  // Warm amber twilight ridge
+    mid: 'rgba(16, 185, 129, 0.25)',  // Fresh green mountain ridge
     front: fillColor,                  // Solid foreground transition
   },
   night: {
-    back: 'rgba(52, 211, 153, 0.2)',   // Distant emerald mountain haze
-    mid: 'rgba(27, 56, 43, 0.6)',      // Mid-range night mountain
+    back: 'rgba(16, 185, 129, 0.15)',  // Distant emerald mountain haze
+    mid: 'rgba(4, 120, 87, 0.2)',      // Mid-range emerald mountain
     front: fillColor,                  // Solid footer tone
   },
   stone: {
-    back: 'rgba(27, 56, 43, 0.35)',    // Deep forest ridge
-    mid: 'rgba(13, 34, 24, 0.65)',     // Mid-range night mountain
+    back: 'rgba(209, 213, 219, 0.5)',  // Soft stone ridge
+    mid: 'rgba(167, 243, 208, 0.35)',  // Mid-range emerald mountain
     front: fillColor,
   }
 }[variant];
@@ -42,7 +42,7 @@ const layers = {
     preserveAspectRatio="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <!-- Capa 1: Cordón Serrano Lejano (Crestas altas en el horizonte) -->
+    <!-- Capa 1: Cordón Serrano Lejano -->
     <path
       d="M0 70 
          C120 50, 200 65, 340 40 
@@ -53,7 +53,7 @@ const layers = {
       fill={layers.back}
     />
 
-    <!-- Capa 2: Cordón Intermedio (Cerros ondulados característicos de La Punta) -->
+    <!-- Capa 2: Cordón Intermedio -->
     <path
       d="M0 95 
          C140 85, 260 70, 400 88 
@@ -64,7 +64,7 @@ const layers = {
       fill={layers.mid}
     />
 
-    <!-- Capa 3: Relieve Frontal Inmediato (Base del valle hacia el Quincho) -->
+    <!-- Capa 3: Relieve Frontal Inmediato -->
     <path
       d="M0 120 
          C160 115, 300 135, 460 118 

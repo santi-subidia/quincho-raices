@@ -790,6 +790,81 @@ export const FAQS: FAQItem[] = [
   },
 ];
 
+export interface WhyChooseUsItem {
+  id: string;
+  number: string;
+  title: string;
+  badge: string;
+  description: string;
+  highlights: string[];
+  icon: string;
+  iconBg: string;
+  badgeColor: string;
+}
+
+export const WHY_CHOOSE_US: WhyChooseUsItem[] = [
+  {
+    id: 'vistas-ubicacion',
+    number: '01',
+    title: 'Vista panorámica a las sierras & ubicación segura',
+    badge: 'La Punta, San Luis',
+    description: 'En el Barrio Aires de San Benito. Entorno serrano apacible, seguro y con fácil acceso vehicular para todos tus invitados.',
+    highlights: [
+      'Vista abierta y franca hacia las sierras',
+      'Barrio residencial tranquilo y seguro',
+      'Estacionamiento cerrado dentro del predio',
+    ],
+    icon: 'Mountain',
+    iconBg: 'bg-emerald-600 text-white shadow-emerald-600/30',
+    badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+  },
+  {
+    id: 'salon-confort',
+    number: '02',
+    title: 'Salón amplio y climatizado para 40 personas',
+    badge: 'Capacidad 40 sentados',
+    description: 'Espacio cerrado confortable en planta baja. Calefacción para todo el año, sonido Bluetooth, baños modernos y mobiliario completo.',
+    highlights: [
+      'Mesas y sillas para 40 personas sentadas',
+      'Calefacción para eventos todo el año',
+      'Modo luces fiesta/reunión y sonido Bluetooth',
+    ],
+    icon: 'Users',
+    iconBg: 'bg-amber-500 text-white shadow-amber-500/30',
+    badgeColor: 'bg-amber-50 text-amber-800 border-amber-200',
+  },
+  {
+    id: 'parque-piscina',
+    number: '03',
+    title: 'Parque privado con piscina y solárium',
+    badge: 'Uso 100% Exclusivo',
+    description: 'Predio parquizado cerrado para disfrutar al aire libre bajo el sol. Piscina cristalina, solárium y privacidad total garantizada.',
+    highlights: [
+      'Piscina al aire libre con vista a las sierras',
+      'Parque cerrado y seguro para niños',
+      'Sin compartir instalaciones con nadie más',
+    ],
+    icon: 'Waves',
+    iconBg: 'bg-teal-500 text-white shadow-teal-500/30',
+    badgeColor: 'bg-teal-50 text-teal-800 border-teal-200',
+  },
+  {
+    id: 'cocina-vajilla',
+    number: '04',
+    title: 'Parrilla, asador, cocina completa y vajilla incluida',
+    badge: 'Vajilla sin cargo extra',
+    description: 'Equipamiento gastronómico listo: vajilla completa para 40 comensales sin costo extra, cocina industrial, freezer y parrilla amplia.',
+    highlights: [
+      'Vajilla completa para 40 (platos, vasos, cubiertos)',
+      'Cocina industrial de alta potencia con horno',
+      'Freezer espacioso y parrilla con tiraje óptimo',
+    ],
+    icon: 'ChefHat',
+    iconBg: 'bg-orange-500 text-white shadow-orange-500/30',
+    badgeColor: 'bg-orange-50 text-orange-800 border-orange-200',
+  },
+];
+
 export function buildWhatsAppLink(
   phoneRaw: string,
   message: string
