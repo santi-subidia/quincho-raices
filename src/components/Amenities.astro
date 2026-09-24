@@ -1,21 +1,14 @@
 ---
-import { WHY_CHOOSE_US } from '../data/quincho';
+import { Image } from 'astro:assets';
 import TreeEmblemWatermark from './TreeEmblemWatermark.astro';
-import {
-  Mountain,
-  Users,
-  Waves,
-  ChefHat,
-  Check,
-  Sparkles,
-} from 'lucide-react';
+import { Sparkles, Check, ArrowDown } from 'lucide-react';
 
-const iconMap: Record<string, any> = {
-  Mountain,
-  Users,
-  Waves,
-  ChefHat,
-};
+import salonImg from '../assets/images/salon_interior_banquet.jpg';
+import poolImg from '../assets/images/pool_mountains.jpg';
+import grillImg from '../assets/images/parrilla_churrasquera.jpg';
+import kitchenImg from '../assets/images/kitchen_dining.jpg';
+import rootWatercolor1 from '../assets/images/roots/root_watercolor_1.png';
+import rootBranch1Emerald from '../assets/images/roots/root_branch_1_emerald.png';
 ---
 
 <section id="amenities" class="py-20 sm:py-28 bg-[#f8faf9] relative border-b border-stone-200/80 scroll-mt-20 overflow-hidden">
@@ -23,74 +16,293 @@ const iconMap: Record<string, any> = {
   <TreeEmblemWatermark className="top-12 -right-32 md:right-10 w-[550px] h-[550px]" opacity={0.035} strokeColor="#059669" />
   <TreeEmblemWatermark className="-bottom-32 -left-32 w-[500px] h-[500px]" opacity={0.025} strokeColor="#10b981" />
 
+  <!-- Botanical Branch Accent Behind Header / Top-Right -->
+  <div class="absolute -top-10 -right-16 sm:-top-8 sm:-right-8 md:right-2 lg:right-8 w-72 sm:w-96 md:w-[460px] pointer-events-none select-none opacity-15 sm:opacity-20 z-0">
+    <Image
+      src={rootWatercolor1}
+      alt="Ramificación botánica de fondo"
+      class="w-full h-auto object-contain filter drop-shadow-[0_4px_20px_rgba(5,150,105,0.12)] rotate-12"
+      loading="lazy"
+      widths={[280, 460, 720]}
+      sizes="(min-width: 1024px) 460px, (min-width: 640px) 384px, 280px"
+    />
+  </div>
+
+  <!-- Botanical Root Accent Lower Section / Bottom-Left -->
+  <div class="absolute -bottom-14 -left-16 sm:-bottom-10 sm:-left-8 md:left-0 w-64 sm:w-80 md:w-[420px] pointer-events-none select-none opacity-15 sm:opacity-20 z-0">
+    <Image
+      src={rootBranch1Emerald}
+      alt="Raíces orgánicas de fondo"
+      class="w-full h-auto object-contain filter drop-shadow-[0_4px_16px_rgba(5,150,105,0.1)] -rotate-12"
+      loading="lazy"
+      widths={[260, 420, 600]}
+      sizes="(min-width: 1024px) 420px, (min-width: 640px) 320px, 260px"
+    />
+  </div>
+
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     
-    <!-- Section Header: "¿Por qué elegir Quincho Raíces?" estilo Vivanco -->
+    <!-- Section Header: Instalaciones & Espacios -->
     <div class="reveal-item text-center max-w-3xl mx-auto mb-12 sm:mb-16">
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold tracking-wide uppercase mb-3.5 border border-emerald-200 shadow-xs">
         <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-        <span>Instalaciones & Comodidad</span>
+        <span>Instalaciones & Espacios</span>
       </div>
       <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 tracking-tight mb-4 text-balance">
-        ¿Por qué elegir Quincho Raíces?
+        Conocé cada espacio de Quincho Raíces
       </h2>
-      <p class="text-base sm:text-lg text-stone-600 leading-relaxed max-w-2xl mx-auto">
-        Espacio exclusivo en planta baja para hasta 40 personas. Todo pensado para que tu festejo sea cómodo, privado y sin sorpresas.
+      <p class="text-base sm:text-lg text-stone-600 leading-relaxed max-w-2xl mx-auto text-balance">
+        Predio cerrado en planta baja con uso 100% exclusivo para hasta 40 personas.
       </p>
     </div>
 
-    <!-- Grid de 4 Tarjetas Claras y Luminosas -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-      {WHY_CHOOSE_US.map((item, index) => {
-        const ItemIcon = iconMap[item.icon] || Sparkles;
-        const delayClass = index % 2 === 0 ? 'reveal-delay-100' : 'reveal-delay-200';
+    <!-- Bento Grid (12 columnas en desktop, asimétrico y adaptativo) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
+      
+      <!-- Tile 1: Salón Principal (Col span 7 lg, Row span 2 lg, altura destacada ~540px) -->
+      <div
+        class="reveal-item group relative rounded-3xl overflow-hidden border border-stone-200/80 shadow-md hover:shadow-2xl transition-all duration-500 lg:col-span-7 lg:row-span-2 min-h-[380px] sm:min-h-[440px] lg:min-h-[540px] flex flex-col justify-between"
+      >
+        <!-- Background Image with Zoom -->
+        <Image
+          src={salonImg}
+          alt="Salón climatizado y confortable con mesas y sillas para 40 comensales en Quincho Raíces"
+          class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+          loading="eager"
+          widths={[640, 1024, 1400]}
+          sizes="(min-width: 1024px) 58vw, 100vw"
+        />
 
-        return (
+        <!-- High-contrast Dark Gradient Overlay -->
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 via-40% to-black/20 pointer-events-none group-hover:from-black/95 transition-colors duration-500"
+        ></div>
+
+        <!-- Top Glassmorphic Badge -->
+        <div class="relative z-10 p-5 sm:p-7">
           <div
-            class={`reveal-item ${delayClass} bg-white rounded-3xl p-6 sm:p-8 border border-stone-200/80 shadow-md shadow-stone-200/50 hover:shadow-xl hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group`}
+            class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/45 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-semibold tracking-wide shadow-lg"
           >
-            <div>
-              <!-- Top Row: Icono Circular de Color Vivo + Badge + Número -->
-              <div class="flex items-center justify-between gap-3 mb-6">
-                <div class="flex items-center gap-3.5">
-                  <div class={`w-13 h-13 rounded-2xl ${item.iconBg} flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300`}>
-                    <ItemIcon className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <span class={`inline-block text-xs font-bold px-3 py-1 rounded-full border ${item.badgeColor}`}>
-                      {item.badge}
-                    </span>
-                  </div>
-                </div>
-                <span class="text-xs font-mono font-bold text-stone-400 group-hover:text-emerald-600 transition-colors">
-                  0{index + 1}/04
-                </span>
-              </div>
-
-              <!-- Title & Short Description (Yendo al grano) -->
-              <h3 class="text-xl sm:text-2xl font-serif font-bold text-stone-900 mb-2 leading-snug group-hover:text-emerald-700 transition-colors">
-                {item.title}
-              </h3>
-              <p class="text-sm text-stone-600 leading-relaxed mb-6">
-                {item.description}
-              </p>
-            </div>
-
-            <!-- Bullet points concisos de 1 línea -->
-            <div class="space-y-2.5 pt-4 border-t border-stone-100">
-              {item.highlights.map((highlight) => (
-                <div class="flex items-center gap-2.5 text-xs sm:text-sm text-stone-700 font-medium">
-                  <div class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
-                    <Check className="w-3.5 h-3.5 text-emerald-700" />
-                  </div>
-                  <span>{highlight}</span>
-                </div>
-              ))}
-            </div>
-
+            <span class="text-base leading-none">🏡</span>
+            <span>Salón Principal</span>
           </div>
-        );
-      })}
+        </div>
+
+        <!-- Bottom Content -->
+        <div class="relative z-10 p-6 sm:p-8">
+          <h3
+            class="font-serif text-2xl sm:text-3xl lg:text-3xl font-bold text-white tracking-tight mb-2 sm:mb-3 leading-snug drop-shadow-sm"
+          >
+            Salón Climatizado & Confortable
+          </h3>
+          <p
+            class="text-sm sm:text-base text-stone-200 font-normal leading-relaxed mb-5 max-w-xl drop-shadow-sm"
+          >
+            Mobiliario completo para 40 comensales, calefacción frío/calor y sonido ambiente Bluetooth.
+          </p>
+
+          <!-- Micro-chips de valor -->
+          <div class="flex flex-wrap items-center gap-2 sm:gap-2.5">
+            <span
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs font-medium shadow-xs"
+            >
+              <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+              <span>Hasta 40 sentados</span>
+            </span>
+            <span
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs font-medium shadow-xs"
+            >
+              <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+              <span>Climatización todo el año</span>
+            </span>
+            <span
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs font-medium shadow-xs"
+            >
+              <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+              <span>Conexión Bluetooth</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tile 2: Secundario Superior - Piscina & Parque (Col span 5 lg, altura ~258px) -->
+      <div
+        class="reveal-item reveal-delay-100 group relative rounded-3xl overflow-hidden border border-stone-200/80 shadow-md hover:shadow-2xl transition-all duration-500 lg:col-span-5 min-h-[270px] sm:min-h-[290px] lg:h-[258px] flex flex-col justify-between"
+      >
+        <!-- Background Image with Zoom -->
+        <Image
+          src={poolImg}
+          alt="Piscina al aire libre con vista a las sierras en Quincho Raíces"
+          class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+          loading="lazy"
+          widths={[480, 800, 1024]}
+          sizes="(min-width: 1024px) 42vw, 100vw"
+        />
+
+        <!-- High-contrast Dark Gradient Overlay -->
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 via-45% to-black/15 pointer-events-none group-hover:from-black/90 transition-colors duration-500"
+        ></div>
+
+        <!-- Top Glassmorphic Badge -->
+        <div class="relative z-10 p-4 sm:p-5">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/45 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-semibold tracking-wide shadow-lg"
+          >
+            <span class="text-base leading-none">🏊</span>
+            <span>Piscina & Parque</span>
+          </div>
+        </div>
+
+        <!-- Bottom Content -->
+        <div class="relative z-10 p-5 sm:p-6">
+          <h3
+            class="font-serif text-xl sm:text-2xl font-bold text-white tracking-tight mb-1.5 leading-snug drop-shadow-sm"
+          >
+            Piscina & Solárium Serrano
+          </h3>
+          <p
+            class="text-xs sm:text-sm text-stone-200 font-normal leading-relaxed mb-3.5 max-w-md drop-shadow-sm line-clamp-2"
+          >
+            Piscina al aire libre con vista a las sierras en un predio verde totalmente privado.
+          </p>
+
+          <!-- Micro-chip de valor -->
+          <div class="flex items-center gap-2">
+            <span
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs font-medium shadow-xs"
+            >
+              <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+              <span>Uso 100% exclusivo</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tile 3 & 4 Subgrid Container (Col span 5 lg, row 2) -->
+      <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 lg:h-[258px]">
+        
+        <!-- Tile 3: Parrilla & Asador -->
+        <div
+          class="reveal-item reveal-delay-200 group relative rounded-3xl overflow-hidden border border-stone-200/80 shadow-md hover:shadow-2xl transition-all duration-500 min-h-[250px] sm:min-h-[260px] lg:h-full flex flex-col justify-between"
+        >
+          <!-- Background Image with Zoom -->
+          <Image
+            src={grillImg}
+            alt="Parrilla y asador amplio con excelente tiraje para eventos en Quincho Raíces"
+            class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+            loading="lazy"
+            widths={[360, 600]}
+            sizes="(min-width: 1024px) 21vw, (min-width: 640px) 50vw, 100vw"
+          />
+
+          <!-- High-contrast Dark Gradient Overlay -->
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 via-45% to-black/20 pointer-events-none group-hover:from-black/95 transition-colors duration-500"
+          ></div>
+
+          <!-- Top Glassmorphic Badge -->
+          <div class="relative z-10 p-3.5 sm:p-4">
+            <div
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/45 backdrop-blur-md border border-white/20 text-white text-xs font-semibold tracking-wide shadow-lg"
+            >
+              <span class="text-sm leading-none">🔥</span>
+              <span>Parrilla & Asador</span>
+            </div>
+          </div>
+
+          <!-- Bottom Content -->
+          <div class="relative z-10 p-4 sm:p-5">
+            <h3
+              class="font-serif text-lg sm:text-xl font-bold text-white tracking-tight mb-1 leading-snug drop-shadow-sm"
+            >
+              Asador Amplio
+            </h3>
+            <p
+              class="text-xs text-stone-200 font-normal leading-relaxed mb-2.5 drop-shadow-sm line-clamp-2"
+            >
+              Excelente tiraje e iluminación para tu asado.
+            </p>
+
+            <!-- Micro-chip de valor -->
+            <div class="flex items-center gap-2">
+              <span
+                class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs font-medium shadow-xs"
+              >
+                <Check className="w-3 h-3 text-emerald-400 shrink-0" />
+                <span>Tiraje óptimo & bacha</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tile 4: Cocina & Vajilla -->
+        <div
+          class="reveal-item reveal-delay-300 group relative rounded-3xl overflow-hidden border border-stone-200/80 shadow-md hover:shadow-2xl transition-all duration-500 min-h-[250px] sm:min-h-[260px] lg:h-full flex flex-col justify-between"
+        >
+          <!-- Background Image with Zoom -->
+          <Image
+            src={kitchenImg}
+            alt="Cocina industrial completa con freezer y vajilla para 40 comensales en Quincho Raíces"
+            class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+            loading="lazy"
+            widths={[360, 600]}
+            sizes="(min-width: 1024px) 21vw, (min-width: 640px) 50vw, 100vw"
+          />
+
+          <!-- High-contrast Dark Gradient Overlay -->
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 via-45% to-black/20 pointer-events-none group-hover:from-black/95 transition-colors duration-500"
+          ></div>
+
+          <!-- Top Glassmorphic Badge -->
+          <div class="relative z-10 p-3.5 sm:p-4">
+            <div
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/45 backdrop-blur-md border border-white/20 text-white text-xs font-semibold tracking-wide shadow-lg"
+            >
+              <span class="text-sm leading-none">🍽️</span>
+              <span>Cocina & Vajilla</span>
+            </div>
+          </div>
+
+          <!-- Bottom Content -->
+          <div class="relative z-10 p-4 sm:p-5">
+            <h3
+              class="font-serif text-lg sm:text-xl font-bold text-white tracking-tight mb-1 leading-snug drop-shadow-sm"
+            >
+              Cocina & Vajilla Incluida
+            </h3>
+            <p
+              class="text-xs text-stone-200 font-normal leading-relaxed mb-2.5 drop-shadow-sm line-clamp-2"
+            >
+              Vajilla completa para 40 sin cargo extra y freezer de gran capacidad.
+            </p>
+
+            <!-- Micro-chip de valor -->
+            <div class="flex items-center gap-2">
+              <span
+                class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs font-medium shadow-xs"
+              >
+                <Check className="w-3 h-3 text-emerald-400 shrink-0" />
+                <span>Vajilla sin costo extra</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Enlace sutil hacia la galería completa -->
+    <div class="reveal-item reveal-delay-200 mt-10 sm:mt-12 text-center">
+      <a
+        href="#galeria"
+        class="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white hover:bg-emerald-50/70 text-stone-700 hover:text-emerald-800 border border-stone-200/90 hover:border-emerald-300 shadow-xs hover:shadow-md transition-all duration-300 text-xs sm:text-sm font-medium group"
+      >
+        <span>¿Querés ver más fotos? Explorá la galería completa</span>
+        <ArrowDown className="w-4 h-4 text-emerald-600 group-hover:translate-y-0.5 transition-transform duration-300" />
+      </a>
     </div>
 
   </div>

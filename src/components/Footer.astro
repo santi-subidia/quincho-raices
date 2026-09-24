@@ -5,6 +5,8 @@ import { Phone, MapPin, Heart, MessageCircle } from 'lucide-react';
 import MountainSilhouette from './MountainSilhouette.astro';
 import TreeEmblemWatermark from './TreeEmblemWatermark.astro';
 import logoImg from '../assets/images/logo_profile.jpg';
+import rootBranch1Emerald from '../assets/images/roots/root_branch_1_emerald.png';
+import rootBranch3Emerald from '../assets/images/roots/root_branch_3_emerald.png';
 
 const currentYear = new Date().getFullYear();
 ---
@@ -17,6 +19,31 @@ const currentYear = new Date().getFullYear();
 
   <!-- Background Botanical Watermark -->
   <TreeEmblemWatermark className="bottom-0 right-4 w-[500px] h-[500px]" opacity={0.03} strokeColor="#34d399" />
+
+  <!-- Botanical Emerald Roots on Dark Charcoal Background -->
+  <!-- Top-left root extending under mountain transition -->
+  <div class="absolute top-8 -left-12 sm:top-10 sm:-left-6 md:left-4 lg:left-10 w-64 sm:w-80 md:w-[420px] pointer-events-none select-none opacity-20 sm:opacity-25 z-0">
+    <Image
+      src={rootBranch1Emerald}
+      alt="Raíces botánicas en pie de página"
+      class="w-full h-auto object-contain filter drop-shadow-[0_0_18px_rgba(52,211,153,0.25)] rotate-6 transform"
+      widths={[260, 420, 600]}
+      sizes="(min-width: 768px) 420px, 260px"
+      loading="lazy"
+    />
+  </div>
+
+  <!-- Bottom-right root extending at the base -->
+  <div class="absolute -bottom-8 -right-10 sm:-bottom-10 sm:-right-4 md:right-4 lg:right-12 w-72 sm:w-96 md:w-[500px] pointer-events-none select-none opacity-25 sm:opacity-30 z-0">
+    <Image
+      src={rootBranch3Emerald}
+      alt="Raíces esmeralda sobre fondo oscuro"
+      class="w-full h-auto object-contain filter drop-shadow-[0_0_24px_rgba(52,211,153,0.35)] -rotate-6 transform"
+      widths={[300, 500, 720]}
+      sizes="(min-width: 768px) 500px, 300px"
+      loading="lazy"
+    />
+  </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">

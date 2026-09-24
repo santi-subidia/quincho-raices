@@ -154,12 +154,18 @@ export const EventShowcase: React.FC = () => {
             </p>
           </div>
 
-          {/* Synthetic Highlights Grid with Green Checks (Qué incluye / Equipamiento clave) */}
+          {/* Highlights Grid with Green Checks (Virtudes destacadas para este tipo de festejo) */}
           <div className="my-6">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-stone-500 mb-3.5 flex items-center gap-2">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Qué incluye para este evento</span>
-            </h4>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 mb-3.5">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-stone-600 flex items-center gap-2">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                <span>Por qué Quincho Raíces es ideal para este festejo</span>
+              </h4>
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-emerald-800 bg-emerald-50 border border-emerald-200/90 px-2.5 sm:px-3 py-1 rounded-xl sm:rounded-full w-fit leading-tight">
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5 sm:mt-0" />
+                <span>Salón, vajilla para 40, parque y piscina siempre 100% incluidos en cada evento</span>
+              </span>
+            </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {activeEvent.highlights.map((highlight, idx) => (
